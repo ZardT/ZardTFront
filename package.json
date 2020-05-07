@@ -12,6 +12,7 @@
     "antd": "^4.1.5",
     "axios": "^0.19.2",
     "next": "9.3.5",
+    "next-i18next": "^4.4.1",
     "node-fetch": "^2.6.0",
     "postcss-css-variables": "^0.17.0",
     "postcss-nested": "^4.2.1",
