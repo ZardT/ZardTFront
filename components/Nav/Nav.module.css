@@ -1,0 +1,13 @@
+.nav {
+  text-align: center;
+  font-weight: 550;
+  .navigation {
+    padding: 8px 20px;
+    transition: background 0.8s, color 0.8s;
+    cursor: pointer;
+  }
+  .navigation:hover {
+    background: #000;
+    color: #ffc31f;
+  }
+}

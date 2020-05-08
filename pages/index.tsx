@@ -6,8 +6,6 @@ import { useEffect } from "react";
 const { i18n, withTranslation } = NextI18NextInstance;
 const Homepage = ({ t }) => {
   useEffect(() => {
-    console.log(i18n);
-    console.log("1");
   }, []);
   return (
     <div className="homePage">
