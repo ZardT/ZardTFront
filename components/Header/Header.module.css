@@ -29,9 +29,4 @@
     background: rgba(0, 0, 0, 1);
     height: 2px;
   }
-  .drop_down_list {
-    width: 100%;
-    background: #000;
-    height: 600px;
-  }
 }

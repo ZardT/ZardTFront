@@ -10,3 +10,17 @@
   border: none;
   box-shadow: none;
 } */
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 600px;
+  overflow: hidden;
+}
+.ant-carousel .slick-dots li {
+  width: 25px;
+}
+.ant-carousel .slick-dots li button {
+  height: 5px;
+}
+.ant-carousel .slick-active {
+  width: 40px;
+}

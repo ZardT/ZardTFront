@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Nav } from "../index";
 import { Row, Col, Input, Select } from "antd";
 import NextI18NextInstance from "../../i18n.js";
@@ -6,15 +7,14 @@ import styles from "./Header.module.css";
 const { withTranslation, i18n } = NextI18NextInstance;
 const { Option } = Select;
 const Header = ({ t }) => {
-  const switchLanguage = (value: string) => {
-    console.log(`selected ${value}`);
-    i18n.changeLanguage((i18n.language = value));
-  };
-  const navigationShow = () => {};
+  // const switchLanguage = (value: string) => {
+  //   console.log(`selected ${value}`);
+  //   i18n.changeLanguage((i18n.language = value));
+  // };
   return (
     <header className={styles.header}>
-      <Row className={styles.top}>
-        <Col span={24}>
+      <Row>
+        <Col span={24} className={styles.top}>
           <Row align="middle" gutter={[0, 20]}>
             <Col span={17}>
               <Col>
@@ -36,11 +36,9 @@ const Header = ({ t }) => {
           </Row>
         </Col>
         <Col span={24}>
-          <Row align="middle">
-            <Col span={21}>
-              <Nav></Nav>
-            </Col>
-            <Col span={2}>
+          <Nav></Nav>
+          {/* <Col span={21}></Col> */}
+          {/* <Col span={2}>
               <Select
                 defaultValue="cn"
                 style={{ width: 120 }}
@@ -52,12 +50,8 @@ const Header = ({ t }) => {
                 <Option value="cn">{t("中文")}</Option>
                 <Option value="en">{t("英文")}</Option>
               </Select>
-            </Col>
-          </Row>
+            </Col> */}
         </Col>
-      </Row>
-      <Row className={styles.drop_down_list}>
-        <Col span={24}></Col>
       </Row>
     </header>
   );
