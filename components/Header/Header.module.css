@@ -1,0 +1,32 @@
+.header {
+  background: #ffc31f;
+  color: #000;
+  position: relative;
+  .top {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+  .search {
+    width: 90%;
+    padding: 5px 0;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+  }
+  .search:hover {
+    border: none;
+    box-shadow: none;
+  }
+  .search:focus {
+    border: none;
+    box-shadow: none;
+  }
+  .search::placeholder {
+    color: #333333;
+  }
+  .linear {
+    width: 95%;
+    background: rgba(0, 0, 0, 1);
+    height: 2px;
+  }
+}
