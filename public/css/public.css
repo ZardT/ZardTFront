@@ -1,26 +1,30 @@
-/* .ant-input {
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
+body {
+  overflow-x: hidden;
 }
-.ant-input:hover {
-  border: none;
-}
-
-.ant-input:focus {
-  border: none;
-  box-shadow: none;
-} */
 .ant-carousel .slick-slide {
   text-align: center;
   height: 600px;
   overflow: hidden;
 }
+.ant-carousel .slick-dots {
+  height: 60px;
+  background: rgba(0, 0, 0, 0.5);
+  margin: 0;
+}
+.ant-carousel .slick-dots-bottom {
+  bottom: 0;
+}
 .ant-carousel .slick-dots li {
-  width: 25px;
+  width: 35px;
+  margin-top: 30px;
 }
 .ant-carousel .slick-dots li button {
   height: 5px;
 }
-.ant-carousel .slick-active {
-  width: 40px;
+
+.ant-carousel .slick-dots li.slick-active {
+  width: 50px;
+}
+.ant-carousel .slick-dots li.slick-active button {
+  background: #ffc31f;
 }

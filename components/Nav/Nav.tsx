@@ -83,11 +83,9 @@ const Nav: FC<Props> = ({ t }) => {
         </Col>
       </Row>
       <Row
-        className={
-          isNavHover !== null
-            ? styles.drop_down_list
-            : styles.drop_down_list_hide
-        }
+        className={`${isNavHover !== null ? styles.drop_down_list : null} ${
+          styles.drop_down_list_hide
+        }`}
         onMouseOver={() => {
           setNavHover(hoveBack);
         }}
