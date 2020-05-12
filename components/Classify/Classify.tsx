@@ -15,14 +15,13 @@ const Classify: FC<Props> = ({ t, title, data }) => {
   return (
     <section className={styles.product}>
       <h2>{t(`${title}`)}</h2>
-      <Row gutter={[16, 16]}>
+      <Row justify="space-between">
         {data.map((item, index) => {
-          console.log(item);
           return (
-            <Col span={6} className={styles.single_product} key={index}>
+            <Col flex="285px" className={styles.single_product} key={index}>
               <div>
                 <img src={item.src} alt={t("产品图片")} />
-                <p>{item.title}</p>
+                <p>{t(`${item.title}`)}</p>
               </div>
             </Col>
           );

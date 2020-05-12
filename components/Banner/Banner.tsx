@@ -11,10 +11,14 @@ const Banner = () => {
             alt="banner"
           />
           <div className={styles.banner_content}>
+            <p>以客户</p>
+            <p>
+              为<span>核心</span>
+            </p>
             <LearnMore></LearnMore>
           </div>
         </div>
-        <div className={styles.banner_img}>
+        {/* <div className={styles.banner_img}>
           <img
             src="https://zardt.oss-cn-beijing.aliyuncs.com/front/banner_2.png"
             alt="banner"
@@ -31,7 +35,7 @@ const Banner = () => {
           <div className={styles.banner_content}>
             <LearnMore></LearnMore>
           </div>
-        </div>
+        </div> */}
       </Carousel>
     </div>
   );

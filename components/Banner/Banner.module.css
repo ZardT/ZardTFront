@@ -9,6 +9,18 @@
       position: absolute;
       bottom: 200px;
       left: 20vw;
+      p {
+        font-size: 60px;
+        color: #fff;
+        margin: 0;
+        text-align: left;
+        span {
+          color: #ffc31f;
+        }
+      }
+      p:first-child {
+        line-height: 60px;
+      }
     }
     img {
       height: 100%;
