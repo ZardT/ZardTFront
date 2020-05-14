@@ -9,7 +9,7 @@
   }
   .navigation {
     padding: 8px 20px;
-    transition: background 1s, color 1s;
+    transition: all 1s;
     cursor: pointer;
   }
   .navigation_hover {
@@ -24,16 +24,10 @@
     width: 100vw;
     height: 0;
     background: #000;
-    transition: height 0.5s ease-in-out;
+    transition: all 0.5s;
+    z-index: 999;
   }
   .drop_down_list {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 100vw;
     height: 600px;
-    background: #000;
-    transition: height 0.5s ease-in-out;
-    z-index: 999;
   }
 }
