@@ -1,0 +1,36 @@
+.footer {
+    margin: 0 auto;
+    text-align: center;
+    color: #000;
+    .contact_us_box {
+        background: #ffc31f;
+    }
+    .contact_us {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 0 50px;
+        h2 {
+            margin: 30px 0;
+        }
+        div {
+            width: 272px;
+            height: 60px;
+            border-radius: 3px;
+            line-height: 60px;
+            background: #fff;
+            color: #000;
+            font-size: 18px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.8s;
+            margin: 20px auto 0;
+        }
+    }
+    .bottom_box {
+        background: #000;
+        .bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    }
+}
