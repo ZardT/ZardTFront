@@ -28,9 +28,30 @@
     }
     .bottom_box {
         background: #000;
+        color: #fff;
+        text-align: left;
         .bottom {
             max-width: 1200px;
             margin: 0 auto;
+            padding-bottom: 100px;
+            line-height: 28px;
+            .footer_logo {
+                margin: 60px 0 20px;
+            }
+            h3 {
+                color: #fff;
+            }
+            .footer_title {
+                margin: 15px 0;
+            }
+        }
+        .website_records_box {
+            border-top: 1px solid #333;
+            .website_records {
+                max-width: 1200px;
+                margin: 0 auto;
+                line-height: 40px;
+            }
         }
     }
 }

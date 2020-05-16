@@ -31,8 +31,8 @@ const Footer: FC<Props> = ({ t, contactUs, footerAd }) => {
         </div> : null}
         <div className={styles.bottom_box}>
             <Row className={styles.bottom}>
-                <Col><img src="/footer_logo.png" alt="logo" /></Col>
-                <Col span={24}>
+                <Col className={styles.footer_logo}><img src="/footer_logo.png" alt="logo" /></Col>
+                <Col span={24} className={styles.footer_title}>
                     <Row>
                         <Col span={4}><h3>{t("产品中心")}</h3></Col>
                         <Col span={4}><h3>{t("企业介绍")}</h3></Col>
@@ -63,6 +63,13 @@ const Footer: FC<Props> = ({ t, contactUs, footerAd }) => {
                     </Row>
                 </Col>
             </Row>
+            <div className={styles.website_records_box}>
+                <Row className={styles.website_records}>
+                    <Col span={6}>{t("乐清市永烨进出口有限公司")}</Col>
+                    <Col span={2}>© ZardT</Col>
+                    <Col span={2}>备案号</Col>
+                </Row>
+            </div>
         </div>
     </footer>)
 };
