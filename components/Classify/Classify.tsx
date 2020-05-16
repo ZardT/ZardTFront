@@ -3,13 +3,13 @@ import { FC, useEffect, useState, ReactNode, useCallback } from "react";
 import { Row, Col } from "antd";
 import { WithTranslation } from "next-i18next";
 import NextI18NextInstance from "../../i18n.js";
-
+import { MoreBtn } from "../index"
 import styles from "./Classify.module.css";
 const { withTranslation, i18n } = NextI18NextInstance;
 
 type Props = {
   title: string;
-  data: Array<{ title: string; src: string }>;
+  data: Array<{ title: string | null; src: string }>;
 } & WithTranslation;
 const Classify: FC<Props> = ({ t, title, data }) => {
   return (
@@ -27,7 +27,8 @@ const Classify: FC<Props> = ({ t, title, data }) => {
           );
         })}
       </Row>
-    </section>
+      {(title !== "精选产品" && title !== "Select the product") && < MoreBtn ></MoreBtn>}
+    </section >
   );
 };
 

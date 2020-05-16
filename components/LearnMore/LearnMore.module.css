@@ -1,6 +1,7 @@
 .learn_more {
   width: 272px;
   height: 60px;
+  border-radius: 3px;
   line-height: 60px;
   background: #fff;
   color: #000;
@@ -9,6 +10,7 @@
   cursor: pointer;
   transition: all 0.8s;
 }
+
 .learn_more:hover {
   background: #ffc31f;
   color: #fff;

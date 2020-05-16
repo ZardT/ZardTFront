@@ -1,12 +1,32 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Header, Banner, Classify, LearnMore } from "../components";
+import { Header, Banner, Classify, LearnMore, Footer } from "../components";
 import Link from "next/link";
 import NextI18NextInstance from "../i18n.js";
 import styles from "../public/css/index.module.css";
 const { i18n, withTranslation } = NextI18NextInstance;
+const data = [{
+  title: "自锁式尼龙扎带",
+  src:
+    "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
+},
+{
+  title: "快速连接器",
+  src:
+    "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
+},
+{
+  title: "吸盘定位片",
+  src:
+    "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
+},
+{
+  title: "膨胀管",
+  src:
+    "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
+}]
 const Homepage = ({ t }) => {
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
   return (
     <div className="homePage">
       <Header></Header>
@@ -14,28 +34,7 @@ const Homepage = ({ t }) => {
       <main>
         <Classify
           title="精选产品"
-          data={[
-            {
-              title: "自锁式尼龙扎带",
-              src:
-                "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
-            },
-            {
-              title: "快速连接器",
-              src:
-                "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
-            },
-            {
-              title: "吸盘定位片",
-              src:
-                "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
-            },
-            {
-              title: "膨胀管",
-              src:
-                "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
-            },
-          ]}
+          data={data}
         ></Classify>
         <article className={styles.advertising}>
           <img
@@ -50,7 +49,12 @@ const Homepage = ({ t }) => {
             <LearnMore></LearnMore>
           </div>
         </article>
+        <Classify
+          title="产品展示"
+          data={data}
+        ></Classify>
       </main>
+      <Footer contactUs={true} footerAd={true}></Footer>
     </div>
   );
 };

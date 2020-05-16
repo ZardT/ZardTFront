@@ -9,6 +9,7 @@
     height: 387px;
     text-align: center;
     border: 1px solid #333;
+    transition: all 0.5s;
     p {
       margin-top: 40px;
     }
@@ -18,5 +19,11 @@
       object-fit: cover;
       object-position: center;
     }
+  }
+  .single_product:hover {
+    border: 1px solid #FFC31F;
+    color: #FFC31F;
+    cursor: pointer;
+    transform: translateY(-8px);
   }
 }
