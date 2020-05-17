@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
-import { Header, Banner, Classify, LearnMore, Footer } from "../components";
 import Link from "next/link";
 import NextI18NextInstance from "../i18n.js";
+import { Header, Banner, Classify, LearnMore, Footer } from "../components";
 import styles from "../public/css/index.module.css";
 const { i18n, withTranslation } = NextI18NextInstance;
 const data = [{
@@ -42,9 +42,9 @@ const Homepage = ({ t }) => {
             alt={`${t("广告")}`}
           />
           <div className={styles.ab_content}>
-            <p>ZardT致力于提供完整的</p>
+            <p>{t("ZardT致力于提供完整的")}</p>
             <p>
-              <span>电器安全/链接/固定解决</span>方案
+              <span>{t("电器安全/链接/固定")}</span>{t("解决方案")}
             </p>
             <LearnMore></LearnMore>
           </div>
