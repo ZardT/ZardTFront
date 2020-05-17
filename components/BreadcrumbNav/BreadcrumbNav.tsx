@@ -11,13 +11,17 @@ type Props = {
         link: string,
         title: string
     };
+    tertius?: {
+        link: string,
+        title: string
+    };
 } & WithTranslation;
-const BreadcrumbNav: FC<Props> = ({ t, second }) => {
+const BreadcrumbNav: FC<Props> = ({ t, second, tertius }) => {
     return (
         <Breadcrumb separator=">">
-            {/* <Breadcrumb.Item href="/ProductCenter">Home</Breadcrumb.Item>
+            <Breadcrumb.Item href="/ProductCenter">产品中心</Breadcrumb.Item>
             <Breadcrumb.Item href={second.link}>{second.title}</Breadcrumb.Item>
-            <Breadcrumb.Item>Home</Breadcrumb.Item> */}
+            {tertius ? <Breadcrumb.Item href={tertius.link}>{tertius.title}</Breadcrumb.Item> : null}
         </Breadcrumb>
     )
 }

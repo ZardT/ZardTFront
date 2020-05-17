@@ -5,7 +5,7 @@ import NextI18NextInstance from "../i18n.js";
 import { Header, Banner, Classify, LearnMore, Footer } from "../components";
 import styles from "../public/css/index.module.css";
 const { i18n, withTranslation } = NextI18NextInstance;
-const data = [{
+const recommend = [{
   title: "自锁式尼龙扎带",
   src:
     "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
@@ -34,7 +34,7 @@ const Homepage = ({ t }) => {
       <main>
         <Classify
           title="精选产品"
-          data={data}
+          data={recommend}
         ></Classify>
         <article className={styles.advertising}>
           <img
@@ -51,7 +51,7 @@ const Homepage = ({ t }) => {
         </article>
         <Classify
           title="产品展示"
-          data={data}
+          data={recommend}
         ></Classify>
       </main>
       <Footer contactUs={true} footerAd={true}></Footer>

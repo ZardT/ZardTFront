@@ -8,8 +8,8 @@ import styles from "./Footer.module.css";
 const { withTranslation, i18n } = NextI18NextInstance;
 
 type Props = {
-    contactUs: boolean | null,
-    footerAd: boolean | null
+    contactUs?: boolean | null,
+    footerAd?: boolean | null
 } & WithTranslation;
 
 const Footer: FC<Props> = ({ t, contactUs, footerAd }) => {

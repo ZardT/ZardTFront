@@ -11,12 +11,12 @@
     padding: 8px 20px;
     transition: all 1s;
     cursor: pointer;
+    color: #000;
   }
   .navigation_hover {
     background: #000;
     color: #ffc31f;
   }
-
   .drop_down_list_hide {
     position: absolute;
     left: 0;
@@ -29,5 +29,19 @@
   }
   .drop_down_list {
     height: 600px;
+    .memu {
+      display: block;
+      height: 600px;
+      color: #fff;
+    }
+  }
+  .memu_none {
+    display: none;
+    height: 600px;
+  }
+  .category {
+    display: flex;
+    flex-direction: column-reverse;
+    color: #fff;
   }
 }
