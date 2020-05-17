@@ -1,17 +1,18 @@
-import { useEffect } from "react";
-import { AppProps } from "next/app";
-import Head from "next/head";
-import { ConfigProvider } from "antd";
-import locale from "antd/lib/locale/zh_CN";
-import PublicContext from "../utils/PublicContext";
-import NextI18NextInstance from "../i18n.js";
-import "antd/dist/antd.css";
-import "../public/css/public.css";
+import { useEffect } from 'react';
+import { AppProps } from 'next/app';
+import Head from 'next/head';
+import { ConfigProvider } from 'antd';
+import locale from 'antd/lib/locale/zh_CN';
+import PublicContext from '../utils/PublicContext';
+import NextI18NextInstance from '../i18n.js';
+import 'antd/dist/antd.css';
+import '../public/css/public.css';
 const { appWithTranslation, i18n } = NextI18NextInstance;
 
 const App = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     console.log(pageProps);
+    console.log('test');
   });
   return (
     <>
