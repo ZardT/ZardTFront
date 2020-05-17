@@ -6,6 +6,9 @@ import { Header, Banner, Classify, LearnMore, Footer, BreadcrumbNav } from "../c
 import styles from "../public/css/ProductCenter.module.css";
 const { i18n, withTranslation } = NextI18NextInstance;
 const ProductCenter = ({ t }) => {
+    useEffect(() => {
+        console.log(location)
+    }, [])
     return (
         <>
             <Header></Header>

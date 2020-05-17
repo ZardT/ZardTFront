@@ -8,14 +8,15 @@ const { withTranslation, i18n } = NextI18NextInstance;
 type Props = {} & WithTranslation;
 const MoreBtn: FC<Props> = ({ t }) => {
     return (
-        <Link href={{ pathname: '/ProductCenter', query: { name: 'test' } }}><div className={styles.more_btn}>
-            <a>{t("更多")} +</a>
-        </div></Link>
+        <div className={styles.more_btn}></div>
+        // <Link href={{ pathname: '/ProductCenter', query: { name: 'test' } }}><div className={styles.more_btn}>
+        //     <a>{t("更多")} +</a>
+        // </div></Link>
     )
 }
 export async function getStaticProps() {
     return {
-        props: { namespacesRequired: ["common"] }, // will be passed to the page component as props
+        props: { namespacesRequired: ["common"] }, 
     };
 }
 export default withTranslation("common")(MoreBtn);

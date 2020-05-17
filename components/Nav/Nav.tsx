@@ -183,7 +183,7 @@ const Nav: FC<Props> = ({ t }) => {
         <Col span={24} className={`${isNavHover !== null ? styles.memu : null} ${
           styles.memu_none
           }`}>
-          <Row>
+          <Row className={styles.category}>
             {
               data.map((item, index) => {
                 return (

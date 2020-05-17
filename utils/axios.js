@@ -5,8 +5,8 @@ import { message } from "antd";
 // axios 封装
 
 axios.defaults.baseURL = `${
-  process.env.NODE_ENV == "development" ? "http://192.168.0.168:7001" : ""
-}/api/front`;
+  process.env.NODE_ENV == "development" ? "http://121.196.27.34:3000" : ""
+  }/api/front`;
 axios.defaults.headers["Content-Type"] = "application/json";
 // console.log(axios.defaults);
 // axios.defaults.token = "111";
