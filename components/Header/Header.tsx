@@ -40,20 +40,6 @@ const Header = ({ t }) => {
         </Col>
         <Col span={24}>
           <Nav></Nav>
-          {/* <Col span={21}></Col> */}
-          {/* <Col span={2}>
-              <Select
-                defaultValue="cn"
-                style={{ width: 120 }}
-                onChange={switchLanguage}
-                bordered={false}
-                defaultActiveFirstOption={false}
-                // dropdownStyle={{ background: "#000" }}
-              >
-                <Option value="cn">{t("中文")}</Option>
-                <Option value="en">{t("英文")}</Option>
-              </Select>
-            </Col> */}
         </Col>
       </Row>
     </header>

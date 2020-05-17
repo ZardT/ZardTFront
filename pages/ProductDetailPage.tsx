@@ -17,7 +17,7 @@ const ProductDetailPage = () => {
     <div className={styles.ProductDetailPage}>
       <Header></Header>
       {/* <BreadcrumbNav second={{ link: "/index", title: "二级分类" }}></BreadcrumbNav> */}
-      <Footer contactUs={true} footerAd={false}></Footer>
+      <Footer></Footer>
     </div>
   );
 };

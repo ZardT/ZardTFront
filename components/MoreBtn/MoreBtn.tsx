@@ -10,7 +10,7 @@ const MoreBtn: FC<Props> = ({ t }) => {
   return (
     <Link href={{ pathname: '/ProductCenter', query: { name: 'test' } }}>
       <div className={styles.more_btn}>
-        <a>{t('更多')} +</a>x
+        <a>{t('更多')} +</a>
       </div>
     </Link>
   );
