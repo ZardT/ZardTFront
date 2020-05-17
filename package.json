@@ -13,6 +13,7 @@
     "@umijs/hooks": "^1.9.2",
     "antd": "^4.1.5",
     "axios": "^0.19.2",
+    "fs": "^0.0.1-security",
     "next": "9.3.5",
     "next-i18next": "^4.4.1",
     "node-fetch": "^2.6.0",
