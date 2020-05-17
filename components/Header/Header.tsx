@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Nav } from "../index";
 import { Row, Col, Input, Select } from "antd";
+import Link from "next/link";
 import NextI18NextInstance from "../../i18n.js";
 import { SearchOutlined } from "@ant-design/icons";
+import { Nav } from "../index";
 import styles from "./Header.module.css";
 const { withTranslation, i18n } = NextI18NextInstance;
 const { Option } = Select;
@@ -17,8 +18,10 @@ const Header = ({ t }) => {
         <Col span={24} className={styles.top}>
           <Row align="middle" gutter={[0, 20]}>
             <Col span={17}>
-              <Col>
-                <img src="/logo.png" alt="logo" />
+              <Col className={styles.logo}>
+                <Link href="/index">
+                  <a><img src="/logo.png" alt="logo" /></a>
+                </Link>
               </Col>
             </Col>
             <Col span={7}>

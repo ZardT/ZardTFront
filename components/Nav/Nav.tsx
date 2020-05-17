@@ -22,6 +22,7 @@ const Nav: FC<Props> = ({ t }) => {
   // const Nav = () => {
   const [hoveBack, setHoveBack] = useState<null | number>(null); //导航移除备份
   const [isNavHover, setNavHover] = useState<null | number>(null); //显示导航栏的hover效果
+  const [currentLanguage, setCurrentLanguage] = useState<null | string>("cn"); //显示导航栏的hover效果
   // const mouseMoveHandle = useCallback(() => {
   //   setNavHover(true);
   //   setShow(true);
@@ -40,9 +41,18 @@ const Nav: FC<Props> = ({ t }) => {
     }
   }, [isNavHover]);
 
+  useEffect(() => {
+    const localLanguage = localStorage.getItem("language")
+    if (localLanguage) {
+      setCurrentLanguage(localLanguage)
+    }
+    console.log(localLanguage)
+  }, [currentLanguage])
   const switchLanguage = (value: string) => {
     console.log(`selected ${value}`);
+    localStorage.setItem("language", value)
     i18n.changeLanguage((i18n.language = value));
+    setCurrentLanguage(value)
   };
   return (
     <nav className={styles.nav_box}>
@@ -70,12 +80,12 @@ const Nav: FC<Props> = ({ t }) => {
         </Col>
         <Col span={2}>
           <Select
-            defaultValue="cn"
+            value={currentLanguage}
             style={{ width: 120 }}
             onChange={switchLanguage}
             bordered={false}
             defaultActiveFirstOption={false}
-            // dropdownStyle={{ background: "#000" }}
+          // dropdownStyle={{ background: "#000" }}
           >
             <Option value="cn">{t("中文")}</Option>
             <Option value="en">{t("英文")}</Option>
@@ -85,7 +95,7 @@ const Nav: FC<Props> = ({ t }) => {
       <Row
         className={`${isNavHover !== null ? styles.drop_down_list : null} ${
           styles.drop_down_list_hide
-        }`}
+          }`}
         onMouseOver={() => {
           setNavHover(hoveBack);
         }}
