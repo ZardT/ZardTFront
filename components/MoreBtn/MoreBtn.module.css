@@ -11,9 +11,16 @@
     transition: all 0.8s;
     margin: 40px auto;
     border: 2px solid #ffc31f;
+    a {
+        color: #ffc31f;
+        transition: all 0.8s;
+    }
 }
 
 .more_btn:hover {
     background: #ffc31f;
     color: #fff;
+    a {
+        color: #fff;
+    }
 }
