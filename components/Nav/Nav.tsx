@@ -1,93 +1,14 @@
 //导航栏
 import { FC, useEffect, useState, ReactNode, useCallback } from "react";
 import { Row, Col, Select } from "antd";
+import GetAxios from "../../utils/axios";
 import { DownOutlined } from "@ant-design/icons";
 import { WithTranslation } from "next-i18next";
 import NextI18NextInstance from "../../i18n.js";
 import styles from "./Nav.module.css";
 const { withTranslation, i18n } = NextI18NextInstance;
+const axios = GetAxios()
 const { Option } = Select;
-const AppBar = [
-  "扎带/线卡",
-  "接线端子/连接器",
-  "配线器材",
-  "绝缘端头",
-  "关于我们",
-];
-
-const data = [
-  {
-    title: "扎带/线卡",
-    second: [
-      {
-        title: "尼龙扎带",
-        tertius: [
-          {
-            title: "自锁式尼龙扎带",
-            src:
-              "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
-          },
-          {
-            title: "可退式尼龙扎带",
-            src:
-              "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
-          },
-          {
-            title: "可松式尼龙扎带",
-            src:
-              "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
-          },
-          {
-            title: "扎带及工具",
-            src:
-              "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
-          },
-          {
-            title: "扎带及工具",
-            src:
-              "https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png",
-          }
-        ]
-      },
-      {
-        title: "不锈钢扎带",
-        tertius: [
-          {
-            title: "自锁式尼龙扎带"
-          }
-        ]
-      },
-      {
-        title: "钢钉线卡",
-        tertius: [
-          {
-            title: "自锁式尼龙扎带"
-          }
-        ]
-      },
-      {
-        title: "铁钉线卡",
-        tertius: [
-          {
-            title: "自锁式尼龙扎带"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    title: "接线端子/连接器"
-  },
-  {
-    title: "配线器材"
-  },
-  {
-    title: "绝缘端头"
-  },
-  {
-    title: "关于我们"
-  }
-]
 type Props = {
   // onHover: (value: string) => void;
 } & WithTranslation;
@@ -97,10 +18,11 @@ const Nav: FC<Props> = ({ t }) => {
   const [hoveBack, setHoveBack] = useState<null | number>(null); //导航移除备份
   const [isNavHover, setNavHover] = useState<null | number>(null); //显示导航栏的hover效果
   const [currentLanguage, setCurrentLanguage] = useState<null | string>("cn"); //语言
-  // const mouseMoveHandle = useCallback(() => {
-  //   setNavHover(true);
-  //   setShow(true);
-  // }, []);
+  const [allCategories, setallCategories] = useState<null | object>([]); //语言
+  //数据获取
+  useEffect(() => {
+    RetrieveCategory()
+  }, [])
 
   useEffect(() => {
     // 当前选中的导航单元
@@ -123,6 +45,14 @@ const Nav: FC<Props> = ({ t }) => {
     console.log(localLanguage)
   }, [currentLanguage])
 
+
+  //获取一二三级类目列表
+  const RetrieveCategory = async () => {
+    const { data } = await axios.get("/api/product/retrieve-category", {})
+    setallCategories(data)
+  }
+
+  //切换语言
   const switchLanguage = (value: string) => {
     localStorage.setItem("language", value)
     i18n.changeLanguage((i18n.language = value));
@@ -134,7 +64,7 @@ const Nav: FC<Props> = ({ t }) => {
       <Row className={styles.nav}>
         <Col span={20}>
           <Row>
-            {data.map((item, index) => {
+            {/* {data.map((item, index) => {
               return (
                 <Col
                   className={styles.navigation}
@@ -151,7 +81,7 @@ const Nav: FC<Props> = ({ t }) => {
                   {item.title}
                 </Col>
               );
-            })}
+            })} */}
           </Row>
         </Col>
         <Col span={2}>
@@ -185,13 +115,13 @@ const Nav: FC<Props> = ({ t }) => {
           }`}>
           <Row className={styles.category}>
             {
-              data.map((item, index) => {
-                return (
-                  <Col key={index}>
-                    {item.title}
-                  </Col>
-                )
-              })
+              // data.map((item, index) => {
+              //   return (
+              //     <Col key={index}>
+              //       {item.title}
+              //     </Col>
+              //   )
+              // })
             }
           </Row>
         </Col>
