@@ -41,6 +41,9 @@
     height: 600px;
   }
   .category {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
     display: flex;
     flex-direction: column-reverse;
     color: #fff;

@@ -18,15 +18,21 @@ const Nav: FC<Props> = ({ t }) => {
   const [hoveBack, setHoveBack] = useState<null | number>(null); //导航移除备份
   const [isNavHover, setNavHover] = useState<null | number>(null); //显示导航栏的hover效果
   const [currentLanguage, setCurrentLanguage] = useState<null | string>("cn"); //语言
-  const [allCategories, setAllCategories] = useState<null | []>([]); //所有类目
+  const [allCategories, setAllCategories] = useState<null | []>([]); //一二级类目
   const [second, setSecond] = useState<null | []>([]); //第二级类目
   const [tertiary, setTertiary] = useState<null | []>([]); //第三级类目
   // const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
   // const [secondId, setSecondId] = useState<null | string>(""); //第二级类目id
   //数据获取
   useEffect(() => {
-    RetrieveCategory()
-  }, [])
+    if (allCategories.length !== 0) {
+
+      RetrieveProduct()
+    } else {
+
+      RetrieveCategory()
+    }
+  })
 
   useEffect(() => {
     // 当前选中的导航单元
@@ -50,16 +56,27 @@ const Nav: FC<Props> = ({ t }) => {
   }, [currentLanguage])
 
 
-  //获取一二三级类目列表
+  //获取一二级类目列表
   const RetrieveCategory = async () => {
     const { data } = await axios.get("/api/product/retrieve-category", {})
     setAllCategories(data)
-    // for (let first of data) {
-    //   setSecond(first.primary.secondary)
+    if (data) {
 
-    // }
+    }
   }
 
+  //获取三级级类目列表(产品详情)
+  const RetrieveProduct = async () => {
+    console.log(allCategories)
+    for (let res of allCategories) {
+      // console.log("一二级详情:" + res._id)
+    }
+    const { data } = await axios.post("/api/product/retrieve-product", {
+      // primaryId:
+    })
+    console.log("三级详情:" + data)
+    // setTertiary(data.list)
+  }
   //切换语言
   const switchLanguage = (value: string) => {
     localStorage.setItem("language", value)
@@ -121,16 +138,15 @@ const Nav: FC<Props> = ({ t }) => {
         <Col span={24} className={`${isNavHover !== null ? styles.memu : null} ${
           styles.memu_none
           }`}>
-          <Row className={styles.category}>
+          <Row className={styles.category} gutter={[0, 10]}>
             {
 
               allCategories.map((item: any, index) => {
                 return (
 
                   item.primary.secondary.map((data, index) => {
-                    console.log(data)
                     return (
-                      <Col key={index}>
+                      <Col key={index} span={4}>
                         {currentLanguage == "en" ? data.titleEn : data.title}
                       </Col>
                     )
