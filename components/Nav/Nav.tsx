@@ -27,7 +27,7 @@ const Nav: FC<Props> = ({ t }) => {
   useEffect(() => {
     if (allCategories.length !== 0) {
 
-      RetrieveProduct()
+      // RetrieveProduct()
     } else {
 
       RetrieveCategory()
@@ -66,13 +66,11 @@ const Nav: FC<Props> = ({ t }) => {
   }
 
   //获取三级级类目列表(产品详情)
-  const RetrieveProduct = async () => {
-    console.log(allCategories)
-    for (let res of allCategories) {
-      // console.log("一二级详情:" + res._id)
-    }
+  const RetrieveProduct = async (index) => {
+    const { _id: primaryId } = allCategories[index]
+    console.log(primaryId)
     const { data } = await axios.post("/api/product/retrieve-product", {
-      // primaryId:
+      primaryId
     })
     console.log("三级详情:" + data)
     // setTertiary(data.list)
@@ -97,6 +95,7 @@ const Nav: FC<Props> = ({ t }) => {
                   onMouseOver={() => {
                     setNavHover(index);
                     setHoveBack(index);
+                    RetrieveProduct(index)
                   }}
                   onMouseLeave={() => {
                     setHoveBack(null);
