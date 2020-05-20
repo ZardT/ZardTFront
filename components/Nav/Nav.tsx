@@ -18,7 +18,11 @@ const Nav: FC<Props> = ({ t }) => {
   const [hoveBack, setHoveBack] = useState<null | number>(null); //导航移除备份
   const [isNavHover, setNavHover] = useState<null | number>(null); //显示导航栏的hover效果
   const [currentLanguage, setCurrentLanguage] = useState<null | string>("cn"); //语言
-  const [allCategories, setallCategories] = useState<null | object>([]); //语言
+  const [allCategories, setAllCategories] = useState<null | []>([]); //所有类目
+  const [second, setSecond] = useState<null | []>([]); //第二级类目
+  const [tertiary, setTertiary] = useState<null | []>([]); //第三级类目
+  // const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
+  // const [secondId, setSecondId] = useState<null | string>(""); //第二级类目id
   //数据获取
   useEffect(() => {
     RetrieveCategory()
@@ -49,7 +53,11 @@ const Nav: FC<Props> = ({ t }) => {
   //获取一二三级类目列表
   const RetrieveCategory = async () => {
     const { data } = await axios.get("/api/product/retrieve-category", {})
-    setallCategories(data)
+    setAllCategories(data)
+    // for (let first of data) {
+    //   setSecond(first.primary.secondary)
+
+    // }
   }
 
   //切换语言
@@ -64,7 +72,7 @@ const Nav: FC<Props> = ({ t }) => {
       <Row className={styles.nav}>
         <Col span={20}>
           <Row>
-            {/* {data.map((item, index) => {
+            {allCategories.map((item: any, index) => {
               return (
                 <Col
                   className={styles.navigation}
@@ -78,10 +86,10 @@ const Nav: FC<Props> = ({ t }) => {
                     setNavHover(null);
                   }}
                 >
-                  {item.title}
+                  {currentLanguage == "en" ? item.primary.titleEn : item.primary.title}
                 </Col>
               );
-            })} */}
+            })}
           </Row>
         </Col>
         <Col span={2}>
@@ -115,13 +123,20 @@ const Nav: FC<Props> = ({ t }) => {
           }`}>
           <Row className={styles.category}>
             {
-              // data.map((item, index) => {
-              //   return (
-              //     <Col key={index}>
-              //       {item.title}
-              //     </Col>
-              //   )
-              // })
+
+              allCategories.map((item: any, index) => {
+                return (
+
+                  item.primary.secondary.map((data, index) => {
+                    console.log(data)
+                    return (
+                      <Col key={index}>
+                        {currentLanguage == "en" ? data.titleEn : data.title}
+                      </Col>
+                    )
+                  })
+                )
+              })
             }
           </Row>
         </Col>
