@@ -19,7 +19,6 @@ const { i18n, withTranslation } = NextI18NextInstance;
 
 
 
-
 const ${titleCase(dirName)} = () =>{
     return (
         <div className={styles.${titleCase(dirName)}}>

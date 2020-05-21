@@ -121,7 +121,7 @@ const Nav: FC<Props> = ({ t }) => {
           </Select>
         </Col>
       </Row>
-      <Row
+      {/* <Row
         className={`${isNavHover !== null ? styles.drop_down_list : null} ${
           styles.drop_down_list_hide
           }`}
@@ -155,7 +155,7 @@ const Nav: FC<Props> = ({ t }) => {
             }
           </Row>
         </Col>
-      </Row>
+      </Row> */}
     </nav>
   );
 };

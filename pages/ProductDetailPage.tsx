@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import PropTypes from 'prop-types';
+import Router from 'next/router';
 import Link from 'next/link';
 import NextI18NextInstance from '../i18n.js';
 import {
@@ -9,14 +10,27 @@ import {
   LearnMore,
   Footer,
   BreadcrumbNav,
+  Detail
 } from '../components';
 import styles from '../public/css/ProductCenter.module.css';
 const { i18n, withTranslation } = NextI18NextInstance;
-const ProductDetailPage = () => {
+const ProductDetailPage = ({t}) => {
+ 
+  // let DetailData = Router.query
+  let [DetailData,handleDetail] = useState<any>(null)
+  useEffect(() => {
+    // console.log(DetailData,'DetailData')
+    handleDetail(Router.query)
+    console.log(DetailData,'DetailData')
+  //  console.log(DetailData,'DetailData')
+  //  console.log(Router.query,'Router.query')
+
+  })
   return (
     <div className={styles.ProductDetailPage}>
       <Header></Header>
       {/* <BreadcrumbNav second={{ link: "/index", title: "二级分类" }}></BreadcrumbNav> */}
+      <Detail data={DetailData} ></Detail>
       <Footer></Footer>
     </div>
   );

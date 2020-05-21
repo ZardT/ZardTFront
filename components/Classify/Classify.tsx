@@ -1,8 +1,8 @@
 //分类组件
 import { FC, useEffect, useState, ReactNode, useCallback } from 'react';
-import Router from 'next/router';
 import { Row, Col } from 'antd';
 import Link from 'next/link';
+import Router from 'next/router'
 import { WithTranslation } from 'next-i18next';
 import NextI18NextInstance from '../../i18n.js';
 import { MoreBtn } from '../index';
@@ -19,9 +19,7 @@ const Classify: FC<Props> = ({ t, title, data }) => {
     console.log(params);
     Router.push({
       pathname: `/ProductDetailPage`,
-      query: {
-        id: params.id,
-      },
+      query: params
     });
   };
   return (

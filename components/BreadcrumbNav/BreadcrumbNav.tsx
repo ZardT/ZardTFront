@@ -15,6 +15,7 @@ type Props = {
         link: string,
         title: string
     };
+  
 } & WithTranslation;
 const BreadcrumbNav: FC<Props> = ({ t, second, tertius }) => {
     return (
