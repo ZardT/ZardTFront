@@ -1,5 +1,6 @@
 //导航栏
 import { FC, useEffect, useState, ReactNode, useCallback } from "react";
+import Router from 'next/router'
 import { Row, Col, Select } from "antd";
 import GetAxios from "../../utils/axios";
 import { DownOutlined } from "@ant-design/icons";
@@ -21,6 +22,7 @@ const Nav: FC<Props> = ({ t }) => {
   const [allCategories, setAllCategories] = useState<null | []>([]); //一二级类目
   const [second, setSecond] = useState<null | []>([]); //第二级类目
   const [tertiary, setTertiary] = useState<null | []>([]); //第三级类目
+  const [nowadayFirst, setNowadayFirst] = useState<null | any>([]); //第一级类目id
   // const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
   // const [secondId, setSecondId] = useState<null | string>(""); //第二级类目id
   //数据获取
@@ -29,8 +31,8 @@ const Nav: FC<Props> = ({ t }) => {
 
       // RetrieveProduct()
     } else {
-
-      RetrieveCategory()
+      getFindAll()
+      // getRetrieveCategory()
     }
   })
 
@@ -56,25 +58,36 @@ const Nav: FC<Props> = ({ t }) => {
   }, [currentLanguage])
 
 
-  //获取一二级类目列表
-  const RetrieveCategory = async () => {
-    const { data } = await axios.get("/api/product/retrieve-category", {})
+  //获取所有类目列表
+  const getFindAll = async () => {
+    const { data } = await axios.get("/product/find-all", {})
+    console.log("所有类目:" + data)
     setAllCategories(data)
-    if (data) {
-
+    for (let { primary, _id } of data) {
+      console.log(primary)
     }
-  }
-
-  //获取三级级类目列表(产品详情)
-  const RetrieveProduct = async (index) => {
-    const { _id: primaryId } = allCategories[index]
-    console.log(primaryId)
-    const { data } = await axios.post("/api/product/retrieve-product", {
-      primaryId
-    })
-    console.log("三级详情:" + data)
     // setTertiary(data.list)
   }
+  //获取一二级类目列表
+  // const getRetrieveCategory = async () => {
+  //   const { data } = await axios.get("/product/retrieve-category")
+  //   setAllCategories(data)
+  //   if (data) {
+
+  //   }
+  // }
+
+  //获取三级级类目列表(产品详情)
+  // const getRetrieveProduct = async (index) => {
+  //   const { _id: primaryId } = allCategories[index]
+  //   console.log(primaryId)
+  //   const { data } = await axios.post("/product/retrieve-product", {
+  //     primaryId
+  //   })
+  //   console.log("三级详情:" + data)
+  //   // setTertiary(data.list)
+  // }
+
   //切换语言
   const switchLanguage = (value: string) => {
     localStorage.setItem("language", value)
@@ -82,6 +95,20 @@ const Nav: FC<Props> = ({ t }) => {
     setCurrentLanguage(value)
   };
 
+  const handRouter = (title, value) => {
+    if (title === "tertiary") {
+
+      Router.push({
+        pathname: "/ProductDetailPage",
+        query: { value },
+      })
+    } else if (title === "second") {
+      Router.push({
+        pathname: "/ProductCenter",
+        query: { value },
+      })
+    }
+  }
   return (
     <nav className={styles.nav_box}>
       <Row className={styles.nav}>
@@ -95,7 +122,7 @@ const Nav: FC<Props> = ({ t }) => {
                   onMouseOver={() => {
                     setNavHover(index);
                     setHoveBack(index);
-                    RetrieveProduct(index)
+                    setNowadayFirst(item.primary.secondary)
                   }}
                   onMouseLeave={() => {
                     setHoveBack(null);
@@ -137,19 +164,36 @@ const Nav: FC<Props> = ({ t }) => {
         <Col span={24} className={`${isNavHover !== null ? styles.memu : null} ${
           styles.memu_none
           }`}>
-          <Row className={styles.category} gutter={[0, 10]}>
+          <Row className={styles.category} >
             {
 
-              allCategories.map((item: any, index) => {
+              nowadayFirst.length !== 0 && nowadayFirst.map((item: any, index) => {
                 return (
 
-                  item.primary.secondary.map((data, index) => {
-                    return (
-                      <Col key={index} span={4}>
-                        {currentLanguage == "en" ? data.titleEn : data.title}
-                      </Col>
-                    )
-                  })
+                  // item.primary.secondary.map((data, index) => {
+                  // return (
+                  <>
+                    <Col key={index} span={4} className={styles.second_box}>
+
+                      <div className={styles.second} onClick={() => { handRouter("second", item) }}>
+                        {currentLanguage == "en" ? item.titleEn : item.title}
+                      </div>
+
+                      <Row className={styles.tertiary_box}>
+                        {item.detail.map((value, index) => {
+                          return (
+                            < Col key={index} className={styles.tertiary} onClick={() => { handRouter("tertiary", item) }}>
+                              {currentLanguage == "en" ? value.titleEn : value.title
+                              }
+                            </Col>
+                          )
+                        })}
+                      </Row>
+                    </Col>
+
+                  </>
+                  // )
+                  // })
                 )
               })
             }

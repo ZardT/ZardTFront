@@ -39,13 +39,30 @@
     display: block;
     /* display: none; */
     height: 600px;
+    padding: 20px 20px 40px;
   }
   .category {
     max-width: 1200px;
     margin: 0 auto;
     text-align: left;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     color: #fff;
+    .second_box {
+      padding: 15px 20px 10px;
+      border-left: 1px solid #333;
+    }
+    .second {
+      cursor: pointer;
+    }
+    .tertiary_box {
+      display: flex;
+      flex-direction: column;
+      color: #ccc;
+      .tertiary {
+        padding: 5px 0;
+        cursor: pointer;
+      }
+    }
   }
 }
