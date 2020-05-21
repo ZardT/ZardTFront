@@ -22,7 +22,7 @@
     left: 0;
     right: 0;
     width: 100vw;
-    height: 600px;
+    height: 0;
     background: #000;
     transition: all 0.5s;
     z-index: 999;
@@ -36,9 +36,9 @@
     }
   }
   .memu_none {
-    display: block;
-    /* display: none; */
-    height: 600px;
+    /* display: block; */
+    display: none;
+    height: 0;
     padding: 20px 20px 40px;
   }
   .category {
