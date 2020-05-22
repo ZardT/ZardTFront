@@ -101,7 +101,7 @@ const Nav: FC<Props> = ({ t }) => {
 
       Router.push({
         pathname: "/ProductDetailPage",
-        query: value ,
+        query: { firstId, second_id, index },
       })
     } else if (title === "second") {
       const secondTitle = []
