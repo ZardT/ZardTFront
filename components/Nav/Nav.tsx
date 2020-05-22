@@ -100,12 +100,12 @@ const Nav: FC<Props> = ({ t }) => {
 
       Router.push({
         pathname: "/ProductDetailPage",
-        query: { value },
+        query: value ,
       })
     } else if (title === "second") {
       Router.push({
         pathname: "/ProductCenter",
-        query: { value },
+        query:  value ,
       })
     }
   }
@@ -148,7 +148,7 @@ const Nav: FC<Props> = ({ t }) => {
           </Select>
         </Col>
       </Row>
-      {/* <Row
+      <Row
         className={`${isNavHover !== null ? styles.drop_down_list : null} ${
           styles.drop_down_list_hide
           }`}
@@ -199,7 +199,7 @@ const Nav: FC<Props> = ({ t }) => {
             }
           </Row>
         </Col>
-      </Row> */}
+      </Row>
     </nav>
   );
 };

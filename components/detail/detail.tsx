@@ -15,7 +15,6 @@ type Props = {
 const Detail: FC<Props> = ({ t, data }) => {
     useEffect(() => {
         
-        console.log(data, '213');
     });
     return (
         <div className={styles.detail}>
