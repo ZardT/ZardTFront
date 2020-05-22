@@ -20,9 +20,8 @@ const ProductDetailPage = ({ t }) => {
   // let DetailData = Router.query
   let [DetailData, handleDetail] = useState<any>(null)
   useEffect(() => {
-
     handleDetail(router.query)
-
+    console.log(DetailData,'DetailData')
   })
   return (
     <div className={styles.ProductDetailPage}>

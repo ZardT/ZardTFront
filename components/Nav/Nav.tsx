@@ -2,7 +2,6 @@
 import { FC, useEffect, useState, ReactNode, useCallback } from "react";
 import Router from 'next/router'
 import { Row, Col, Select } from "antd";
-import Link from 'next/link';
 import GetAxios from "../../utils/axios";
 import { DownOutlined } from "@ant-design/icons";
 import { WithTranslation } from "next-i18next";
@@ -23,8 +22,8 @@ const Nav: FC<Props> = ({ t }) => {
   const [allCategories, setAllCategories] = useState<null | []>([]); //一二级类目
   const [second, setSecond] = useState<null | []>([]); //第二级类目
   const [tertiary, setTertiary] = useState<null | []>([]); //第三级类目
-  const [nowadayFirst, setNowadayFirst] = useState<null | any>([]); //当前一级类目下的二级类目
-  const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
+  const [nowadayFirst, setNowadayFirst] = useState<null | any>([]); //第一级类目id
+  // const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
   // const [secondId, setSecondId] = useState<null | string>(""); //第二级类目id
   //数据获取
   useEffect(() => {
@@ -55,14 +54,17 @@ const Nav: FC<Props> = ({ t }) => {
     if (localLanguage) {
       setCurrentLanguage(localLanguage)
     }
+    console.log(localLanguage)
   }, [currentLanguage])
 
 
   //获取所有类目列表
   const getFindAll = async () => {
     const { data } = await axios.get("/product/find-all", {})
+    console.log("所有类目:" + data)
     setAllCategories(data)
     for (let { primary, _id } of data) {
+      console.log(primary)
     }
     // setTertiary(data.list)
   }
@@ -93,17 +95,17 @@ const Nav: FC<Props> = ({ t }) => {
     setCurrentLanguage(value)
   };
 
-  const handRouter = (title, item, index?) => {
-    const { _id: second_id } = item
+  const handRouter = (title, value) => {
     if (title === "tertiary") {
+
       Router.push({
         pathname: "/ProductDetailPage",
-        query: { firstId, second_id, index },
+        query: value ,
       })
     } else if (title === "second") {
       Router.push({
         pathname: "/ProductCenter",
-        query: { firstId, second_id, },
+        query:  value ,
       })
     }
   }
@@ -121,7 +123,6 @@ const Nav: FC<Props> = ({ t }) => {
                     setNavHover(index);
                     setHoveBack(index);
                     setNowadayFirst(item.primary.secondary)
-                    setFirstId(item._id)
                   }}
                   onMouseLeave={() => {
                     setHoveBack(null);
@@ -169,23 +170,30 @@ const Nav: FC<Props> = ({ t }) => {
               nowadayFirst.length !== 0 && nowadayFirst.map((item: any, index) => {
                 return (
 
-                  <Col key={index} span={4} className={styles.second_box}>
-                    <div className={styles.second} onClick={() => { handRouter("second", item) }}>
-                      {currentLanguage == "en" ? item.titleEn : item.title}
-                    </div>
+                  // item.primary.secondary.map((data, index) => {
+                  // return (
+                  <>
+                    <Col key={index} span={4} className={styles.second_box}>
 
-                    <Row className={styles.tertiary_box}>
-                      {item.detail.map((value, index) => {
-                        return (
-                          < Col key={index} className={styles.tertiary}
-                            onClick={() => { handRouter("tertiary", item, index) }}>
-                            {currentLanguage == "en" ? value.titleEn : value.title
-                            }
-                          </Col>
-                        )
-                      })}
-                    </Row>
-                  </Col>
+                      <div className={styles.second} onClick={() => { handRouter("second", item) }}>
+                        {currentLanguage == "en" ? item.titleEn : item.title}
+                      </div>
+
+                      <Row className={styles.tertiary_box}>
+                        {item.detail.map((value, index) => {
+                          return (
+                            < Col key={index} className={styles.tertiary} onClick={() => { handRouter("tertiary", item) }}>
+                              {currentLanguage == "en" ? value.titleEn : value.title
+                              }
+                            </Col>
+                          )
+                        })}
+                      </Row>
+                    </Col>
+
+                  </>
+                  // )
+                  // })
                 )
               })
             }
