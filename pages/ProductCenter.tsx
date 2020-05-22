@@ -9,7 +9,9 @@ const { i18n, withTranslation } = NextI18NextInstance;
 const ProductCenter = ({ t }) => {
     const router = useRouter()
     useEffect(() => {
-        console.log(router)
+        // const { data } = router.query
+        // console.log(JSON.parse(data))
+        localStorage.getItem("hhh")
     }, [])
     return (
         <>
