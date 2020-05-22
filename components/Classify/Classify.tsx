@@ -22,6 +22,19 @@ const Classify: FC<Props> = ({ t, title, data }) => {
       query: params
     });
   };
+  
+  useEffect(() => {
+    import("scrollreveal").then((module) => {
+      const ScrollReveal = module.default;
+      ScrollReveal({
+        delay: 500,
+        distance: "100px",
+        duration: 1000,
+        easing: "cubic-bezier(0.5, 0, 0, 1)",
+      });
+      ScrollReveal().reveal(`.${styles.single_product}`);
+    });
+  }, []);
   return (
     <section className={styles.product}>
       <h2>{t(`${title}`)}</h2>

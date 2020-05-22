@@ -13,6 +13,21 @@ type Props = {
 } & WithTranslation;
 
 const Footer: FC<Props> = ({ t, contactUs, footerAd }) => {
+
+  useEffect(() => {
+    import("scrollreveal").then((module) => {
+      const ScrollReveal = module.default;
+      ScrollReveal({
+        delay: 300,
+        distance: "100px",
+        duration: 500,
+        easing: "cubic-bezier(0.5, 0, 0, 1)",
+      });
+      ScrollReveal().reveal(`.${styles.logo}`);
+      ScrollReveal().reveal(`.${styles.knowing_more}`);
+      ScrollReveal().reveal(`.ant-col-4`);
+    });
+  }, []);
   return (
     <footer className={styles.footer}>
       {footerAd ? (
@@ -30,7 +45,7 @@ const Footer: FC<Props> = ({ t, contactUs, footerAd }) => {
             <p>{`${t('公司地址')}：${t('浙江省乐清市柳市镇前州村')}`}</p>
             <p>{`${t('热销电话')}：86-15658191855`}</p>
             <p>{`${t('公司邮箱')}：clive@zardt.com`}</p>
-            <div>{t('进一步了解')}</div>
+            <div className={styles.knowing_more}>{t('进一步了解')}</div>
           </div>
         </div>
       ) : null}

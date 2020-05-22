@@ -14,6 +14,7 @@ const App = ({ Component, pageProps }: AppProps) => {
     console.log(pageProps);
     console.log('test');
   });
+
   return (
     <>
       <Head>

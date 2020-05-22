@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
-import Router from "next/router"
+import Router, { useRouter } from "next/router"
 import NextI18NextInstance from "../i18n.js";
 import { Header, Banner, Classify, LearnMore, Footer, BreadcrumbNav } from "../components";
 import styles from "../public/css/ProductCenter.module.css";
 const { i18n, withTranslation } = NextI18NextInstance;
 const ProductCenter = ({ t }) => {
+    const router = useRouter()
     useEffect(() => {
+        console.log(router)
     }, [])
     return (
         <>

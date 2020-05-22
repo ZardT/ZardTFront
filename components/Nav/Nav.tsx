@@ -54,17 +54,14 @@ const Nav: FC<Props> = ({ t }) => {
     if (localLanguage) {
       setCurrentLanguage(localLanguage)
     }
-    console.log(localLanguage)
   }, [currentLanguage])
 
 
   //获取所有类目列表
   const getFindAll = async () => {
     const { data } = await axios.get("/product/find-all", {})
-    console.log("所有类目:" + data)
     setAllCategories(data)
     for (let { primary, _id } of data) {
-      console.log(primary)
     }
     // setTertiary(data.list)
   }
@@ -96,9 +93,9 @@ const Nav: FC<Props> = ({ t }) => {
   };
 
   const handRouter = (title, value?, second?) => {
-    const { _id: second_id, title: second_title, titleEn: second_titleEn } = second
     if (title === "tertiary") {
 
+      const { _id: second_id, title: second_title, titleEn: second_titleEn } = second
       Router.push({
         pathname: "/ProductDetailPage",
         query: { ...value, second_id, second_title, second_titleEn },

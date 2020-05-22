@@ -7,6 +7,18 @@ import styles from './MoreBtn.module.css';
 const { withTranslation, i18n } = NextI18NextInstance;
 type Props = {} & WithTranslation;
 const MoreBtn: FC<Props> = ({ t }) => {
+  useEffect(() => {
+    import("scrollreveal").then((module) => {
+      const ScrollReveal = module.default;
+      ScrollReveal({
+        delay: 1000,
+        distance: "100px",
+        duration: 1000,
+        easing: "cubic-bezier(0.5, 0, 0, 1)",
+      });
+      ScrollReveal().reveal(`.${styles.more_btn}`);
+    });
+  }, []);
   return (
     <Link href={{ pathname: '/ProductCenter', query: { name: 'test' } }}>
       <div className={styles.more_btn}>
