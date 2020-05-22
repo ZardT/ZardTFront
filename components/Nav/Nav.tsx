@@ -25,7 +25,7 @@ const Nav: FC<Props> = ({ t }) => {
   const [tertiary, setTertiary] = useState<null | []>([]); //第三级类目
   const [nowadayFirst, setNowadayFirst] = useState<null | any>([]); //当前一级类目下的二级类目
   const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
-  // const [secondId, setSecondId] = useState<null | string>(""); //第二级类目id
+  // const [firstIndex, setFirstIndex] = useState<null | number>(0); //当前一级类目下标
   //数据获取
   useEffect(() => {
     if (allCategories.length !== 0) {
@@ -60,7 +60,7 @@ const Nav: FC<Props> = ({ t }) => {
 
   //获取所有类目列表
   const getFindAll = async () => {
-    const { data } = await axios.get("/product/find-all", {})
+    const { data } = await axios.get("/product/find-all")
     setAllCategories(data)
     for (let { primary, _id } of data) {
     }
@@ -95,15 +95,21 @@ const Nav: FC<Props> = ({ t }) => {
 
   const handRouter = (title, item, index?) => {
     const { _id: second_id } = item
+    console.log(nowadayFirst)
     if (title === "tertiary") {
       Router.push({
         pathname: "/ProductDetailPage",
         query: { firstId, second_id, index },
       })
     } else if (title === "second") {
+      const secondTitle = []
+      for (let { title, titleEn } of nowadayFirst) {
+        secondTitle.push({ title, titleEn })
+      }
+      localStorage.setItem("secondTitle", JSON.stringify(secondTitle))
       Router.push({
         pathname: "/ProductCenter",
-        query: { firstId, second_id, },
+        query: { firstId, second_id, secondIndex: index },
       })
     }
   }
@@ -170,7 +176,7 @@ const Nav: FC<Props> = ({ t }) => {
                 return (
 
                   <Col key={index} span={4} className={styles.second_box}>
-                    <div className={styles.second} onClick={() => { handRouter("second", item) }}>
+                    <div className={styles.second} onClick={() => { handRouter("second", item, index) }}>
                       {currentLanguage == "en" ? item.titleEn : item.title}
                     </div>
 
