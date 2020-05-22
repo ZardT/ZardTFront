@@ -28,7 +28,29 @@ const recommend = [
   },
 ];
 const Homepage = ({ t }) => {
-  useEffect(() => {}, []);
+
+  useEffect(() => {
+    import("scrollreveal").then((module) => {
+      const ScrollReveal = module.default;
+      ScrollReveal({
+        delay: 500,
+        distance: "100px",
+        duration: 1000,
+        easing: "cubic-bezier(0.5, 0, 0, 1)",
+      });
+      ScrollReveal().reveal(`.${styles.row}`);
+      ScrollReveal().reveal(`.${styles.title}`);
+      ScrollReveal().reveal(`.${styles.more_btn}`);
+      ScrollReveal().reveal(`.${styles.learn_more}`);
+      ScrollReveal().reveal(`.${styles.single_product}`);
+      ScrollReveal().reveal(`.${styles.translate}`);
+      ScrollReveal().reveal("h2");
+      ScrollReveal().reveal("h3");
+      ScrollReveal().reveal("h4");
+      ScrollReveal().reveal("h5");
+      ScrollReveal().reveal("p");
+    });
+  }, []);
   return (
     <div className="homePage">
       <Header></Header>

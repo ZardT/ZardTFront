@@ -12,6 +12,18 @@ const Header = ({ t }) => {
   //   console.log(`selected ${value}`);
   //   i18n.changeLanguage((i18n.language = value));
   // };
+  useEffect(() => {
+    import("scrollreveal").then((module) => {
+      const ScrollReveal = module.default;
+      ScrollReveal({
+        delay: 300,
+        distance: "100px",
+        duration: 500,
+        easing: "cubic-bezier(0.5, 0, 0, 1)",
+      });
+      ScrollReveal().reveal(`.${styles.logo}`);
+    });
+  }, []);
   return (
     <header className={styles.header}>
       <Row>

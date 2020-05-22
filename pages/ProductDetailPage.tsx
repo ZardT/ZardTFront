@@ -1,6 +1,6 @@
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Link from 'next/link';
 import NextI18NextInstance from '../i18n.js';
 import {
@@ -14,17 +14,18 @@ import {
 } from '../components';
 import styles from '../public/css/ProductCenter.module.css';
 const { i18n, withTranslation } = NextI18NextInstance;
-const ProductDetailPage = ({t}) => {
- 
+
+const ProductDetailPage = ({ t }) => {
+  const router = useRouter()
   // let DetailData = Router.query
-  let [DetailData,handleDetail] = useState<any>(null)
+  let [DetailData, handleDetail] = useState<any>(null)
   useEffect(() => {
     console.log(Router.query,'router')
     // console.log(DetailData,'DetailData')
     handleDetail(Router.query)
-    console.log(DetailData,'DetailData')
-  //  console.log(DetailData,'DetailData')
-  //  console.log(Router.query,'Router.query')
+    console.log(router, 'DetailData')
+    //  console.log(DetailData,'DetailData')
+    //  console.log(Router.query,'Router.query')
 
   })
   return (

@@ -54,17 +54,14 @@ const Nav: FC<Props> = ({ t }) => {
     if (localLanguage) {
       setCurrentLanguage(localLanguage)
     }
-    console.log(localLanguage)
   }, [currentLanguage])
 
 
   //获取所有类目列表
   const getFindAll = async () => {
     const { data } = await axios.get("/product/find-all", {})
-    console.log("所有类目:" + data)
     setAllCategories(data)
     for (let { primary, _id } of data) {
-      console.log(primary)
     }
     // setTertiary(data.list)
   }
@@ -95,17 +92,18 @@ const Nav: FC<Props> = ({ t }) => {
     setCurrentLanguage(value)
   };
 
-  const handRouter = (title, value) => {
+  const handRouter = (title, value?, second?) => {
     if (title === "tertiary") {
 
+      const { _id: second_id, title: second_title, titleEn: second_titleEn } = second
       Router.push({
         pathname: "/ProductDetailPage",
-        query: value ,
+        query: { ...value, second_id, second_title, second_titleEn },
       })
     } else if (title === "second") {
       Router.push({
         pathname: "/ProductCenter",
-        query:  value ,
+        query: { ...value },
       })
     }
   }
@@ -170,30 +168,24 @@ const Nav: FC<Props> = ({ t }) => {
               nowadayFirst.length !== 0 && nowadayFirst.map((item: any, index) => {
                 return (
 
-                  // item.primary.secondary.map((data, index) => {
-                  // return (
-                  <>
-                    <Col key={index} span={4} className={styles.second_box}>
+                  <Col key={index} span={4} className={styles.second_box}>
 
-                      <div className={styles.second} onClick={() => { handRouter("second", item) }}>
-                        {currentLanguage == "en" ? item.titleEn : item.title}
-                      </div>
+                    <div className={styles.second} onClick={() => { handRouter("second", item) }}>
+                      {currentLanguage == "en" ? item.titleEn : item.title}
+                    </div>
 
-                      <Row className={styles.tertiary_box}>
-                        {item.detail.map((value, index) => {
-                          return (
-                            < Col key={index} className={styles.tertiary} onClick={() => { handRouter("tertiary", item) }}>
-                              {currentLanguage == "en" ? value.titleEn : value.title
-                              }
-                            </Col>
-                          )
-                        })}
-                      </Row>
-                    </Col>
-
-                  </>
-                  // )
-                  // })
+                    <Row className={styles.tertiary_box}>
+                      {item.detail.map((value, index) => {
+                        return (
+                          < Col key={index} className={styles.tertiary}
+                            onClick={() => { handRouter("tertiary", value, item) }}>
+                            {currentLanguage == "en" ? value.titleEn : value.title
+                            }
+                          </Col>
+                        )
+                      })}
+                    </Row>
+                  </Col>
                 )
               })
             }
