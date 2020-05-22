@@ -2,6 +2,7 @@
 import { FC, useEffect, useState, ReactNode, useCallback } from "react";
 import Router from 'next/router'
 import { Row, Col, Select } from "antd";
+import Link from 'next/link';
 import GetAxios from "../../utils/axios";
 import { DownOutlined } from "@ant-design/icons";
 import { WithTranslation } from "next-i18next";
@@ -22,8 +23,8 @@ const Nav: FC<Props> = ({ t }) => {
   const [allCategories, setAllCategories] = useState<null | []>([]); //一二级类目
   const [second, setSecond] = useState<null | []>([]); //第二级类目
   const [tertiary, setTertiary] = useState<null | []>([]); //第三级类目
-  const [nowadayFirst, setNowadayFirst] = useState<null | any>([]); //第一级类目id
-  // const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
+  const [nowadayFirst, setNowadayFirst] = useState<null | any>([]); //当前一级类目下的二级类目
+  const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
   // const [secondId, setSecondId] = useState<null | string>(""); //第二级类目id
   //数据获取
   useEffect(() => {
@@ -92,18 +93,17 @@ const Nav: FC<Props> = ({ t }) => {
     setCurrentLanguage(value)
   };
 
-  const handRouter = (title, value?, second?) => {
+  const handRouter = (title, item, index?) => {
+    const { _id: second_id } = item
     if (title === "tertiary") {
-
-      const { _id: second_id, title: second_title, titleEn: second_titleEn } = second
       Router.push({
         pathname: "/ProductDetailPage",
-        query: { ...value, second_id, second_title, second_titleEn },
+        query: { firstId, second_id, index },
       })
     } else if (title === "second") {
       Router.push({
         pathname: "/ProductCenter",
-        query: { ...value },
+        query: { firstId, second_id, },
       })
     }
   }
@@ -121,6 +121,7 @@ const Nav: FC<Props> = ({ t }) => {
                     setNavHover(index);
                     setHoveBack(index);
                     setNowadayFirst(item.primary.secondary)
+                    setFirstId(item._id)
                   }}
                   onMouseLeave={() => {
                     setHoveBack(null);
@@ -169,7 +170,6 @@ const Nav: FC<Props> = ({ t }) => {
                 return (
 
                   <Col key={index} span={4} className={styles.second_box}>
-
                     <div className={styles.second} onClick={() => { handRouter("second", item) }}>
                       {currentLanguage == "en" ? item.titleEn : item.title}
                     </div>
@@ -178,7 +178,7 @@ const Nav: FC<Props> = ({ t }) => {
                       {item.detail.map((value, index) => {
                         return (
                           < Col key={index} className={styles.tertiary}
-                            onClick={() => { handRouter("tertiary", value, item) }}>
+                            onClick={() => { handRouter("tertiary", item, index) }}>
                             {currentLanguage == "en" ? value.titleEn : value.title
                             }
                           </Col>
