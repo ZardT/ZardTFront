@@ -20,12 +20,8 @@ const ProductDetailPage = ({ t }) => {
   // let DetailData = Router.query
   let [DetailData, handleDetail] = useState<any>(null)
   useEffect(() => {
-    console.log(Router.query,'router')
-    // console.log(DetailData,'DetailData')
-    handleDetail(Router.query)
-    console.log(router, 'DetailData')
-    //  console.log(DetailData,'DetailData')
-    //  console.log(Router.query,'Router.query')
+
+    handleDetail(router.query)
 
   })
   return (
