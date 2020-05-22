@@ -22,9 +22,9 @@ const Nav: FC<Props> = ({ t }) => {
   const [allCategories, setAllCategories] = useState<null | []>([]); //一二级类目
   const [second, setSecond] = useState<null | []>([]); //第二级类目
   const [tertiary, setTertiary] = useState<null | []>([]); //第三级类目
-  const [nowadayFirst, setNowadayFirst] = useState<null | any>([]); //第一级类目id
-  // const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
-  // const [secondId, setSecondId] = useState<null | string>(""); //第二级类目id
+  const [nowadayFirst, setNowadayFirst] = useState<null | any>([]); //当前一级类目下的二级类目
+  const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
+  // const [firstIndex, setFirstIndex] = useState<null | number>(0); //当前一级类目下标
   //数据获取
   useEffect(() => {
     if (allCategories.length !== 0) {
@@ -60,8 +60,7 @@ const Nav: FC<Props> = ({ t }) => {
 
   //获取所有类目列表
   const getFindAll = async () => {
-    const { data } = await axios.get("/product/find-all", {})
-    console.log("所有类目:" + data)
+    const { data } = await axios.get("/product/find-all")
     setAllCategories(data)
     for (let { primary, _id } of data) {
       console.log(primary)
@@ -95,7 +94,9 @@ const Nav: FC<Props> = ({ t }) => {
     setCurrentLanguage(value)
   };
 
-  const handRouter = (title, value) => {
+  const handRouter = (title, item, index?) => {
+    const { _id: second_id } = item
+    console.log(nowadayFirst)
     if (title === "tertiary") {
 
       Router.push({
@@ -103,9 +104,14 @@ const Nav: FC<Props> = ({ t }) => {
         query: value ,
       })
     } else if (title === "second") {
+      const secondTitle = []
+      for (let { title, titleEn } of nowadayFirst) {
+        secondTitle.push({ title, titleEn })
+      }
+      localStorage.setItem("secondTitle", JSON.stringify(secondTitle))
       Router.push({
         pathname: "/ProductCenter",
-        query:  value ,
+        query: { firstId, second_id, secondIndex: index },
       })
     }
   }
@@ -170,30 +176,23 @@ const Nav: FC<Props> = ({ t }) => {
               nowadayFirst.length !== 0 && nowadayFirst.map((item: any, index) => {
                 return (
 
-                  // item.primary.secondary.map((data, index) => {
-                  // return (
-                  <>
-                    <Col key={index} span={4} className={styles.second_box}>
+                  <Col key={index} span={4} className={styles.second_box}>
+                    <div className={styles.second} onClick={() => { handRouter("second", item, index) }}>
+                      {currentLanguage == "en" ? item.titleEn : item.title}
+                    </div>
 
-                      <div className={styles.second} onClick={() => { handRouter("second", item) }}>
-                        {currentLanguage == "en" ? item.titleEn : item.title}
-                      </div>
-
-                      <Row className={styles.tertiary_box}>
-                        {item.detail.map((value, index) => {
-                          return (
-                            < Col key={index} className={styles.tertiary} onClick={() => { handRouter("tertiary", item) }}>
-                              {currentLanguage == "en" ? value.titleEn : value.title
-                              }
-                            </Col>
-                          )
-                        })}
-                      </Row>
-                    </Col>
-
-                  </>
-                  // )
-                  // })
+                    <Row className={styles.tertiary_box}>
+                      {item.detail.map((value, index) => {
+                        return (
+                          < Col key={index} className={styles.tertiary}
+                            onClick={() => { handRouter("tertiary", item, index) }}>
+                            {currentLanguage == "en" ? value.titleEn : value.title
+                            }
+                          </Col>
+                        )
+                      })}
+                    </Row>
+                  </Col>
                 )
               })
             }
