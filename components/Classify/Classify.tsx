@@ -10,8 +10,8 @@ import styles from './Classify.module.css';
 const { withTranslation, i18n } = NextI18NextInstance;
 
 type Props = {
-  title: string;
-  data: Array<{ title: string | null; src: string }>;
+  title?: string;
+  data: any;
 } & WithTranslation;
 const Classify: FC<Props> = ({ t, title, data }) => {
   const goDetail = (params) => (e) => {
@@ -22,7 +22,7 @@ const Classify: FC<Props> = ({ t, title, data }) => {
       query: params
     });
   };
-  
+
   useEffect(() => {
     import("scrollreveal").then((module) => {
       const ScrollReveal = module.default;
@@ -37,13 +37,13 @@ const Classify: FC<Props> = ({ t, title, data }) => {
   }, []);
   return (
     <section className={styles.product}>
-      <h2>{t(`${title}`)}</h2>
+      {title ? <h2>{t(`${title}`)}</h2> : null}
       <Row justify="space-between">
         {data.map((item, index) => {
           return (
             <Col flex="285px" className={styles.single_product} key={index}>
               <div onClick={goDetail(item)}>
-                <img src={item.src} alt={t('产品图片')} />
+                <img src={item.src || item.productPictureUrl} alt={t('产品图片')} />
                 <p>{t(`${item.title}`)}</p>
               </div>
             </Col>

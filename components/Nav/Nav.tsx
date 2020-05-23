@@ -25,6 +25,7 @@ const Nav: FC<Props> = ({ t }) => {
   const [tertiary, setTertiary] = useState<null | []>([]); //第三级类目
   const [nowadayFirst, setNowadayFirst] = useState<null | any>([]); //当前一级类目下的二级类目
   const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
+  const [firstTitle, setFirstTitle] = useState<any>({}); //第一级类目title
   // const [firstIndex, setFirstIndex] = useState<null | number>(0); //当前一级类目下标
   //数据获取
   useEffect(() => {
@@ -94,6 +95,7 @@ const Nav: FC<Props> = ({ t }) => {
   };
 
   const handRouter = (title, item, index?) => {
+    console.log(allCategories)
     const { _id: second_id } = item
     console.log(nowadayFirst)
     if (title === "tertiary") {
@@ -103,13 +105,13 @@ const Nav: FC<Props> = ({ t }) => {
       })
     } else if (title === "second") {
       const secondTitle = []
-      for (let { title, titleEn } of nowadayFirst) {
-        secondTitle.push({ title, titleEn })
+      for (let { title, titleEn, _id } of nowadayFirst) {
+        secondTitle.push({ title, titleEn, _id })
       }
       localStorage.setItem("secondTitle", JSON.stringify(secondTitle))
       Router.push({
         pathname: "/ProductCenter",
-        query: { firstId, second_id, secondIndex: index },
+        query: { firstId, second_id, secondIndex: index, firstTitle },
       })
     }
   }
@@ -128,6 +130,7 @@ const Nav: FC<Props> = ({ t }) => {
                     setHoveBack(index);
                     setNowadayFirst(item.primary.secondary)
                     setFirstId(item._id)
+                    // setFirstTitle( item.title, item.titleEn )
                   }}
                   onMouseLeave={() => {
                     setHoveBack(null);
