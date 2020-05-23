@@ -2,7 +2,6 @@
 import { FC, useEffect, useState, ReactNode, useCallback } from "react";
 import Router from 'next/router'
 import { Row, Col, Select } from "antd";
-import Link from 'next/link';
 import GetAxios from "../../utils/axios";
 import { DownOutlined } from "@ant-design/icons";
 import { WithTranslation } from "next-i18next";
@@ -56,6 +55,7 @@ const Nav: FC<Props> = ({ t }) => {
     if (localLanguage) {
       setCurrentLanguage(localLanguage)
     }
+    console.log(localLanguage)
   }, [currentLanguage])
 
 
@@ -64,6 +64,7 @@ const Nav: FC<Props> = ({ t }) => {
     const { data } = await axios.get("/product/find-all")
     setAllCategories(data)
     for (let { primary, _id } of data) {
+      console.log(primary)
     }
     // setTertiary(data.list)
   }
@@ -99,6 +100,7 @@ const Nav: FC<Props> = ({ t }) => {
     const { _id: second_id } = item
     console.log(nowadayFirst)
     if (title === "tertiary") {
+
       Router.push({
         pathname: "/ProductDetailPage",
         query: { firstId, second_id, index },
