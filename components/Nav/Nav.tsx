@@ -25,6 +25,7 @@ const Nav: FC<Props> = ({ t }) => {
   const [nowadayFirst, setNowadayFirst] = useState<null | any>([]); //当前一级类目下的二级类目
   const [firstId, setFirstId] = useState<null | string>(""); //第一级类目id
   const [firstTitle, setFirstTitle] = useState<any>({}); //第一级类目title
+  const [firstTitleEn, setFirstTitleEn] = useState<any>({}); //第一级类目title英文版F
   // const [firstIndex, setFirstIndex] = useState<null | number>(0); //当前一级类目下标
   //数据获取
   useEffect(() => {
@@ -55,7 +56,6 @@ const Nav: FC<Props> = ({ t }) => {
     if (localLanguage) {
       setCurrentLanguage(localLanguage)
     }
-    console.log(localLanguage)
   }, [currentLanguage])
 
 
@@ -63,9 +63,8 @@ const Nav: FC<Props> = ({ t }) => {
   const getFindAll = async () => {
     const { data } = await axios.get("/product/find-all")
     setAllCategories(data)
-    for (let { primary, _id } of data) {
-      console.log(primary)
-    }
+    // for (let { primary, _id } of data) {
+    // }
     // setTertiary(data.list)
   }
   //获取一二级类目列表
@@ -96,7 +95,6 @@ const Nav: FC<Props> = ({ t }) => {
   };
 
   const handRouter = (title, item, index?) => {
-    console.log(allCategories)
     const { _id: second_id } = item
     console.log(nowadayFirst)
     if (title === "tertiary") {
@@ -113,7 +111,7 @@ const Nav: FC<Props> = ({ t }) => {
       localStorage.setItem("secondTitle", JSON.stringify(secondTitle))
       Router.push({
         pathname: "/ProductCenter",
-        query: { firstId, second_id, secondIndex: index, firstTitle },
+        query: { firstId, second_id, secondIndex: index, firstTitle, firstTitleEn },
       })
     }
   }
@@ -132,7 +130,9 @@ const Nav: FC<Props> = ({ t }) => {
                     setHoveBack(index);
                     setNowadayFirst(item.primary.secondary)
                     setFirstId(item._id)
-                    // setFirstTitle( item.title, item.titleEn )
+                    console.log(item)
+                    setFirstTitle(item.primary.title)
+                    setFirstTitleEn(item.primary.titleEn)
                   }}
                   onMouseLeave={() => {
                     setHoveBack(null);
