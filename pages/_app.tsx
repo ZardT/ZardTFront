@@ -11,8 +11,8 @@ const { appWithTranslation, i18n } = NextI18NextInstance;
 
 const App = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
-    console.log(pageProps);
-    console.log('test');
+    // console.log(pageProps);
+    // console.log('test');
   });
 
   return (

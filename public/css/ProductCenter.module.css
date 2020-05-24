@@ -1,4 +1,13 @@
 .ProductCenter {
     max-width: 1200px;
     margin: 0 auto;
+    .product_list {
+        margin-top: 30px;
+    }
+    .second_title_list {
+        color: #000;
+    }
+    .second_title {
+        cursor: pointer;
+    }
 }
