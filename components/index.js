@@ -7,4 +7,6 @@ import MoreBtn from "./MoreBtn/MoreBtn";
 import Footer from "./Footer/Footer";
 import BreadcrumbNav from "./BreadcrumbNav/BreadcrumbNav";
 import Detail from "./detail/detail"
-export { Header, Nav, Banner, LearnMore, Classify, MoreBtn, Footer, BreadcrumbNav,Detail };
+import Overview from "./Overview/Overview"
+import ContactUs from "./ContactUs/ContactUs"
+export { Header, Nav, Banner, LearnMore, Classify, MoreBtn, Footer, BreadcrumbNav,Detail,Overview,ContactUs };
