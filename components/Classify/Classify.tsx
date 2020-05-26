@@ -15,7 +15,6 @@ type Props = {
 } & WithTranslation;
 const Classify: FC<Props> = ({ t, title, data }) => {
   const goDetail = (params) => (e) => {
-    // e.stopPropagation();
     console.log(params);
     Router.push({
       pathname: `/ProductDetailPage`,
