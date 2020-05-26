@@ -5,7 +5,8 @@ import NextI18NextInstance from '../../i18n.js';
 
 import styles from './MoreBtn.module.css';
 const { withTranslation, i18n } = NextI18NextInstance;
-type Props = {} & WithTranslation;
+type Props = {
+} & WithTranslation;
 const MoreBtn: FC<Props> = ({ t }) => {
   useEffect(() => {
     import("scrollreveal").then((module) => {
@@ -20,7 +21,7 @@ const MoreBtn: FC<Props> = ({ t }) => {
     });
   }, []);
   return (
-    <Link href={{ pathname: '/ProductCenter', query: { name: 'test' } }}>
+    <Link href={{ pathname: '/ProductCenter' }}>
       <div className={styles.more_btn}>
         <a>{t('更多')} +</a>
       </div>

@@ -1,34 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import NextI18NextInstance from '../i18n.js';
-import { Header, Banner, Classify, LearnMore, Footer } from '../components';
+import { Header, Banner, Classify, LearnMore, Footer, MoreBtn } from '../components';
+import GetAxios from "../utils/axios"
 import styles from '../public/css/index.module.css';
 const { i18n, withTranslation } = NextI18NextInstance;
-const recommend = [
-  {
-    id: 1,
-    title: '自锁式尼龙扎带',
-    src: 'https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png',
-  },
-  {
-    id: 2,
-    title: '快速连接器',
-    src: 'https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png',
-  },
-  {
-    id: 3,
-    title: '吸盘定位片',
-    src: 'https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png',
-  },
-  {
-    id: 4,
-    title: '膨胀管',
-    src: 'https://zardt.oss-cn-beijing.aliyuncs.com/front/product.png',
-  },
-];
-const Homepage = ({ t }) => {
+const axios = GetAxios()
 
+const Homepage = ({ t }) => {
+  const [recommend, setRecommend] = useState([])
+  const [allCategories, setAllCategories] = useState<null | any>([]); //一二级类目
   useEffect(() => {
     import("scrollreveal").then((module) => {
       const ScrollReveal = module.default;
@@ -51,6 +33,32 @@ const Homepage = ({ t }) => {
       ScrollReveal().reveal("p");
     });
   }, []);
+  //数据获取
+  useEffect(() => {
+    if (allCategories.length !== 0) {
+
+    } else {
+      getFindAll()
+    }
+  })
+  useEffect(() => {
+    getRecommend()
+  }, [])
+  //获取所有类目列表
+  const getFindAll = async () => {
+    await axios.get("/product/find-all").then(({ data }) => {
+
+      setAllCategories(data)
+    })
+    // for (let { primary, _id } of data) {
+    // }
+    // setTertiary(data.list)
+  }
+  const getRecommend = async () => {
+    await axios.get("/product/find-all-recommend").then(({ data }) => {
+      setRecommend(data)
+    })
+  }
   return (
     <div className="homePage">
       <Header></Header>
@@ -71,7 +79,8 @@ const Homepage = ({ t }) => {
             <LearnMore></LearnMore>
           </div>
         </article>
-        <Classify title="产品展示" data={recommend}></Classify>
+        <Classify title="产品展示" data={allCategories.length !== 0 ? allCategories[0].primary.secondary : []}></Classify>
+        <MoreBtn></MoreBtn>
       </main>
       <Footer contactUs={true} footerAd={true}></Footer>
     </div>

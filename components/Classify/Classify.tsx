@@ -11,7 +11,7 @@ const { withTranslation, i18n } = NextI18NextInstance;
 
 type Props = {
   title?: string;
-  data: any;
+  data?: any;
 } & WithTranslation;
 const Classify: FC<Props> = ({ t, title, data }) => {
   const goDetail = (params) => (e) => {
@@ -42,16 +42,16 @@ const Classify: FC<Props> = ({ t, title, data }) => {
           return (
             <Col flex="285px" className={styles.single_product} key={index}>
               <div onClick={goDetail(item)}>
-                <img src={item.src || item.productPictureUrl} alt={t('产品图片')} />
-                <p>{t(`${item.title}`)}</p>
+                <img src={item.productPictureUrl || item.detail.productPictureUrl || item.pictureUrl} alt={t('产品图片')} />
+                <p>{item.title || item.detail.title}</p>
               </div>
             </Col>
           );
         })}
       </Row>
-      {title !== '精选产品' && title !== 'Select the product' && (
+      {/* {title && title !== '精选产品' && title !== 'Select the product' && (
         <MoreBtn></MoreBtn>
-      )}
+      )} */}
     </section>
   );
 };

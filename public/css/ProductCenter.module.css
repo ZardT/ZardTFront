@@ -10,4 +10,29 @@
     .second_title {
         cursor: pointer;
     }
+    .more_btn {
+        width: 272px;
+        height: 60px;
+        border-radius: 3px;
+        line-height: 60px;
+        background: #fff;
+        color: #ffc31f;
+        font-size: 18px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.8s;
+        margin: 40px auto;
+        border: 2px solid #ffc31f;
+        a {
+            color: #ffc31f;
+            transition: all 0.8s;
+        }
+    }
+    .more_btn:hover {
+        background: #ffc31f;
+        color: #fff;
+        a {
+            color: #fff;
+        }
+    }
 }

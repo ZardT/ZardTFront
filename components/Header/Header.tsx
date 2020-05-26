@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Row, Col, Input, Select } from "antd";
 import Link from "next/link";
 import NextI18NextInstance from "../../i18n.js";
+import { WithTranslation } from "next-i18next";
 import { SearchOutlined } from "@ant-design/icons";
 import { Nav } from "../index";
 import styles from "./Header.module.css";
 const { withTranslation, i18n } = NextI18NextInstance;
 const { Option } = Select;
-const Header = ({ t }) => {
+type Props = {
+  // allCategories?: any
+} & WithTranslation;
+const Header: FC<Props> = ({ t }) => {
   // const switchLanguage = (value: string) => {
   //   console.log(`selected ${value}`);
   //   i18n.changeLanguage((i18n.language = value));
