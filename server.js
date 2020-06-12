@@ -21,7 +21,6 @@ app
       createProxyMiddleware("/api", {
         target: "http://121.196.27.34:3000",
         changeOrigin: true,
-        pathRewrite: { '^/api': '' },
       })
     );
     // Default catch-all handler to allow Next.js to handle all other routes
