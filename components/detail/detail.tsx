@@ -22,7 +22,7 @@ const Detail: FC<Props> = ({ t, data }) => {
    
     useEffect(() => {
         console.log(data,'routerData')
-        if(data){
+        if(!data){
                 getSecondAll()
               
             }
