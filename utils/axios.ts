@@ -11,7 +11,7 @@ interface BaseAjax {
 }
 
 const BASE_URL =
-  process.env.NODE_ENV == "development" ? "http://localhost:3000/api" : "";
+  process.env.NODE_ENV == "development" ? "http://localhost:3000/api" : "/api";
 
 const GetAxios = () => {
   const instance: AxiosInstance = Axios.create({
