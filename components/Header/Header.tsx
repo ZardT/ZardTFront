@@ -1,17 +1,33 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Row, Col, Input, Select } from "antd";
 import Link from "next/link";
 import NextI18NextInstance from "../../i18n.js";
+import { WithTranslation } from "next-i18next";
 import { SearchOutlined } from "@ant-design/icons";
 import { Nav } from "../index";
 import styles from "./Header.module.css";
 const { withTranslation, i18n } = NextI18NextInstance;
 const { Option } = Select;
-const Header = ({ t }) => {
+type Props = {
+  // allCategories?: any
+} & WithTranslation;
+const Header: FC<Props> = ({ t }) => {
   // const switchLanguage = (value: string) => {
   //   console.log(`selected ${value}`);
   //   i18n.changeLanguage((i18n.language = value));
   // };
+  useEffect(() => {
+    import("scrollreveal").then((module) => {
+      const ScrollReveal = module.default;
+      ScrollReveal({
+        delay: 300,
+        distance: "100px",
+        duration: 500,
+        easing: "cubic-bezier(0.5, 0, 0, 1)",
+      });
+      ScrollReveal().reveal(`.${styles.logo}`);
+    });
+  }, []);
   return (
     <header className={styles.header}>
       <Row>
@@ -40,20 +56,6 @@ const Header = ({ t }) => {
         </Col>
         <Col span={24}>
           <Nav></Nav>
-          {/* <Col span={21}></Col> */}
-          {/* <Col span={2}>
-              <Select
-                defaultValue="cn"
-                style={{ width: 120 }}
-                onChange={switchLanguage}
-                bordered={false}
-                defaultActiveFirstOption={false}
-                // dropdownStyle={{ background: "#000" }}
-              >
-                <Option value="cn">{t("中文")}</Option>
-                <Option value="en">{t("英文")}</Option>
-              </Select>
-            </Col> */}
         </Col>
       </Row>
     </header>

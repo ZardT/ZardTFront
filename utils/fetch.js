@@ -1,11 +1,11 @@
 import fetch from "node-fetch";
 const get = async (string, body) => {
-  
+
   const res = await fetch(
     `${
-      process.env.NODE_ENV == "development"
-        ? "http://192.168.0.168:7001/api/front"
-        : "http://172.18.0.1/api/front"
+    process.env.NODE_ENV == "development"
+      ? "http://121.196.27.34:3000/api/front"
+      : "http://121.196.27.34:3000/api/front"
     }${string}`,
     {
       method: "get",
@@ -22,9 +22,9 @@ const get = async (string, body) => {
 const post = async (string, body) => {
   const res = await fetch(
     `${
-      process.env.NODE_ENV == "development"
-        ? "http://192.168.0.168:7001/api/front"
-        : "http://172.18.0.1/api/front"
+    process.env.NODE_ENV == "development"
+      ? "http://121.196.27.34:3000/api/front"
+      : "http://121.196.27.34:3000/api/front"
     }${string}`,
     {
       method: "post",

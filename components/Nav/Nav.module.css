@@ -11,12 +11,12 @@
     padding: 8px 20px;
     transition: all 1s;
     cursor: pointer;
+    color: #000;
   }
   .navigation_hover {
     background: #000;
     color: #ffc31f;
   }
-
   .drop_down_list_hide {
     position: absolute;
     left: 0;
@@ -29,5 +29,40 @@
   }
   .drop_down_list {
     height: 600px;
+    .memu {
+      display: block;
+      height: 600px;
+      color: #fff;
+    }
+  }
+  .memu_none {
+    /* display: block; */
+    display: none;
+    height: 0;
+    padding: 20px 20px 40px;
+  }
+  .category {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    .second_box {
+      padding: 15px 20px 10px;
+      border-left: 1px solid #333;
+    }
+    .second {
+      cursor: pointer;
+    }
+    .tertiary_box {
+      display: flex;
+      flex-direction: column;
+      color: #ccc;
+      .tertiary {
+        padding: 5px 0;
+        cursor: pointer;
+      }
+    }
   }
 }
