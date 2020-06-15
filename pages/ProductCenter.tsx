@@ -51,9 +51,9 @@ const ProductCenter = ({ t }) => {
         await axios.get("/product/retrieve-category").then(({ data }) => {
             console.log(data)
             setAllCategories(data)
-            setSecondTitleAry(data[0].primary.secondary)
+            setSecondTitleAry(data[0]?.primary?.secondary)
             console.log(data[0])
-            getRetrieveProduct(data[0]._id, data[0].primary.secondary[0]._id, 1)
+            getRetrieveProduct(data[0]?._id, data[0]?.primary?.secondary[0]?._id, 1)
         })
     }
 
@@ -82,7 +82,7 @@ const ProductCenter = ({ t }) => {
                 <BreadcrumbNav second={{
                     title: firstTitle ? (currentLanguage === "cn" ? firstTitle : firstTitleEn)
                         : (allCategories.length > 0 ?
-                            (currentLanguage === "cn" ? allCategories[0].primary.title : allCategories[0].primary.titleEn)
+                            (currentLanguage === "cn" ? allCategories[0]?.primary?.title : allCategories[0]?.primary?.titleEn)
                             : null)
                 }}>
                 </BreadcrumbNav>
@@ -113,17 +113,17 @@ const ProductCenter = ({ t }) => {
                         <Classify data={thirdlyList}></Classify>
                     </Col>
                     <Col span={24}>
-                        <div className={styles.more_btn} onClick={() => {
+                        {thirdlyList.length > 0 && <div className={styles.more_btn} onClick={() => {
                             thirdlyList
                             const nub = current + 1
                             getRetrieveProduct(
-                                firstId || allCategories[0]._id,
-                                second_id || allCategories[0].primary.secondary[0]._id,
+                                firstId || allCategories[0]?._id,
+                                second_id || allCategories[0]?.primary?.secondary[0]?._id,
                                 nub, "more")
                             setCurrent(nub)
                         }}>
                             {t('更多')} +
-                        </div>
+                        </div>}
                     </Col>
                 </Row>
             </main>

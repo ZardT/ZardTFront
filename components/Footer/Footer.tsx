@@ -46,8 +46,8 @@ const Footer: FC<Props> = ({ t, contactUs, footerAd }) => {
             <p>{`${t('公司地址')}：${t('浙江省乐清市柳市镇前州村')}`}</p>
             <p>{`${t('热销电话')}：86-15658191855`}</p>
             <p>{`${t('公司邮箱')}：clive@zardt.com`}</p>
-            <Link href="/ContactUsPage"> 
-            <div className={styles.knowing_more}>{t('进一步了解')}</div>
+            <Link href="/ContactUsPage">
+              <div className={styles.knowing_more}>{t('进一步了解')}</div>
             </Link>
           </div>
         </div>
@@ -55,7 +55,9 @@ const Footer: FC<Props> = ({ t, contactUs, footerAd }) => {
       <div className={styles.bottom_box}>
         <Row className={styles.bottom}>
           <Col className={styles.footer_logo}>
-            <img src="/footer_logo.png" alt="logo" />
+            <Link href="/index">
+              <a><img src="/footer_logo.png" alt="logo" /></a>
+            </Link>
           </Col>
           <Col span={24} className={styles.footer_title}>
             <Row>
@@ -63,14 +65,14 @@ const Footer: FC<Props> = ({ t, contactUs, footerAd }) => {
                 <h3>{t('产品中心')}</h3>
               </Col>
               <Col span={4}>
-            <Link href="/overviewPage"> 
-                <h3>{t('企业介绍')}</h3>
+                <Link href="/overviewPage">
+                  <h3>{t('企业介绍')}</h3>
                 </Link>
               </Col>
               <Col span={4}>
-            <Link href="/DownloadPage"> 
-                <h3>{t('资料下载')}</h3>
-             </Link>
+                <Link href="/DownloadPage">
+                  <h3>{t('资料下载')}</h3>
+                </Link>
               </Col>
             </Row>
           </Col>
@@ -78,7 +80,7 @@ const Footer: FC<Props> = ({ t, contactUs, footerAd }) => {
             <Row>
               <Col span={4}>{t('扎带及工具')}</Col>
               <Link href="/overviewPage" >
-              <Col className={styles.href} span={4}>{t('企业概述')}</Col>
+                <Col className={styles.href} span={4}>{t('企业概述')}</Col>
               </Link>
               <Col span={4}>{t('尼龙扎带及配线器材样本书')}</Col>
             </Row>
@@ -87,7 +89,7 @@ const Footer: FC<Props> = ({ t, contactUs, footerAd }) => {
             <Row>
               <Col span={4}>{t('钢钉线卡')}</Col>
               <Link href="/overviewPage" >
-              <Col className={styles.href} span={4}>{t('企业文化')}</Col>
+                <Col className={styles.href} span={4}>{t('企业文化')}</Col>
               </Link>
             </Row>
           </Col>

@@ -35,12 +35,12 @@ const Homepage = ({ t }) => {
   }, []);
   //数据获取
   useEffect(() => {
-    if (allCategories.length !== 0) {
+    // if (allCategories.length !== 0) {
 
-    } else {
+    // } else {
       getFindAll()
-    }
-  })
+    // }
+  },[])
   useEffect(() => {
     getRecommend()
   }, [])

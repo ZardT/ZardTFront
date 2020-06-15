@@ -32,11 +32,11 @@ const Detail: FC<Props> = ({ t, data }) => {
     const getSecondAll = async () => {
         if(Object.keys(data).length!=0){
             let params= {
-                primaryId:data.firstId,
-                secondaryId:data.second_id
+                primaryId:data?.firstId,
+                secondaryId:data?.second_id
             }
             const  res:any  = await axios.post(`/product/retrieve-product`, params )
-            setAllCategories(res.data.list[data.index])
+            setAllCategories(res?.data?.list[data?.index])
         }
       }
       
@@ -48,34 +48,34 @@ const Detail: FC<Props> = ({ t, data }) => {
             <img className={styles.detail_image} src={data.src} alt="" />
         </div> */}
             <div className={styles.top}>
-                <img className={styles.top_left} src={allCategories &&  allCategories.productPictureUrl} />
+                <img className={styles.top_left} src={allCategories &&  allCategories?.productPictureUrl} />
                 <div className={styles.top_right}>
                     <div className={styles.top_right_block}>
                         <div className={styles.top_right_title}>
                             {currentLanguage == 'en'
-                                ? allCategories.titlenEn
-                                : allCategories.title}
+                                ? allCategories?.titlenEn
+                                : allCategories?.title}
                                
                         </div>
 
                         <BreadcrumbNav
                             second={{
                                 link: '/index',
-                                title: allCategories.title,
+                                title: allCategories?.title,
                             }}
                             tertius={{
                                 link: '/index',
-                                title: allCategories.productDescription,
+                                title: allCategories?.productDescription,
                             }}
                         ></BreadcrumbNav>
                     </div>
                     <div className={styles.material}></div>
-                        <div className={styles.material}>{allCategories.productDescription}</div>
+                        <div className={styles.material}>{allCategories?.productDescription}</div>
                 </div>
             </div>
             <div className={styles.config}>
                 <div className={styles.config_title}>{t('技术参数')}</div>
-                <img src={allCategories.productDescriptionEn} alt=""/>
+                <img src={allCategories?.productDescriptionEn} alt=""/>
             </div>
         </div>)}
         </div>
