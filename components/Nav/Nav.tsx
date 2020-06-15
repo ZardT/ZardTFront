@@ -29,14 +29,14 @@ const Nav: FC<Props> = ({ t }) => {
   // const [firstIndex, setFirstIndex] = useState<null | number>(0); //当前一级类目下标
   //数据获取
   useEffect(() => {
-    if (allCategories.length !== 0) {
+    // if (allCategories.length !== 0) {
 
-      // RetrieveProduct()
-    } else {
-      getFindAll()
-      // getRetrieveCategory()
-    }
-  })
+    //   // RetrieveProduct()
+    // } else {
+    //   // getRetrieveCategory()
+    // }
+    getFindAll()
+  },[])
 
   useEffect(() => {
     // 当前选中的导航单元

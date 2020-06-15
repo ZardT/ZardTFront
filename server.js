@@ -19,7 +19,7 @@ app
     server = express()
     server.use(
       createProxyMiddleware("/api", {
-        target: "http://121.196.27.34:3000",
+        target: "https://www.zardt.com/",
         changeOrigin: true,
       })
     );
