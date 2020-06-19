@@ -29,9 +29,9 @@ const ProductDetailPage = ({ t }) => {
     <div className={styles.ProductDetailPage}>
       <Header></Header>
       {/* <BreadcrumbNav second={{ link: "/index", title: "二级分类" }}></BreadcrumbNav> */}
-    <Overview></Overview>
-    <ContactUs></ContactUs>
-      <Footer></Footer>
+      <Overview></Overview>
+      {/* <ContactUs></ContactUs> */}
+      <Footer contactUs={true}></Footer>
     </div>
   );
 };
