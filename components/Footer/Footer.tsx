@@ -106,7 +106,7 @@ const Footer: FC<Props> = ({ t, contactUs, footerAd }) => {
           <Row className={styles.website_records}>
             <Col span={6}>{t('乐清市永烨进出口有限公司')}</Col>
             <Col span={2}>© ZardT</Col>
-            <Col span={2}>备案号</Col>
+            <Col span={6}>{t("备案号")}:浙ICP备20017781号-1</Col>
           </Row>
         </div>
       </div>

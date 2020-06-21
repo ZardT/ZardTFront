@@ -18,10 +18,12 @@ const Detail: FC<Props> = ({ t, data }) => {
     const [localData, setlocalData] = useState<any>(null)
     const [currentLanguage, setCurrentLanguage] = useState<null | string>('cn'); //语言
 
-    // useEffect(() => {
+   //切换语言
+   useEffect(() => {
+    const localLanguage = localStorage.getItem("language")
+    setCurrentLanguage(localLanguage)
+})
 
-    //     setlocalData(data)
-    // }, [data])
     return (
         <div>
             {data && (<div className={styles.detail}>
@@ -43,7 +45,7 @@ const Detail: FC<Props> = ({ t, data }) => {
                             <BreadcrumbNav
                                 second={{
                                     link: '/ProductCenter',
-                                    title: data?.setitle,
+                                    title: currentLanguage == 'en' ? data?.setitleEn : data?.setitle,
                                 }}
                                 tertius={{
                                     link: '/detail',
@@ -52,7 +54,7 @@ const Detail: FC<Props> = ({ t, data }) => {
                             ></BreadcrumbNav>
                         </div>
                         <div className={styles.material}></div>
-                        <div className={styles.material}>{data?.productDescription}</div>
+                        <div className={styles.material}>{currentLanguage == 'en' ? data?.productDescriptionEn : data?.productDescription}</div>
                     </div>
                 </div>
                 <div className={styles.config}>

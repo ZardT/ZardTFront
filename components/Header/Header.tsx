@@ -40,7 +40,7 @@ const Header: FC<Props> = ({ t }) => {
                 </Link>
               </Col>
             </Col>
-            <Col span={7}>
+            {/* <Col span={7}>
               <Row>
                 <Col span={24}>
                   <Input
@@ -51,7 +51,7 @@ const Header: FC<Props> = ({ t }) => {
                 </Col>
                 <Col className={styles.linear}></Col>
               </Row>
-            </Col>
+            </Col> */}
           </Row>
         </Col>
         <Col span={24}>

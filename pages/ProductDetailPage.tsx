@@ -16,16 +16,21 @@ import {
 import styles from '../public/css/ProductCenter.module.css';
 const { i18n, withTranslation } = NextI18NextInstance;
 
-const ProductDetailPage = ({ }) => {
+const ProductDetailPage = ({ query }) => {
   const [detailData, setDetailData] = useState({})
+  // const [storage, setStorage] = useState()
+  // useEffect(() => {
+
+  // }, [])
   useEffect(() => {
+
     const DetailData = localStorage.getItem("product")
     console.log(DetailData)
     if (DetailData) {
 
       setDetailData(JSON.parse(DetailData))
     }
-  }, [])
+  }, [query])
   return (
     <div className={styles.ProductDetailPage}>
       <Header></Header>
@@ -35,5 +40,10 @@ const ProductDetailPage = ({ }) => {
     </div>
   );
 };
+export async function getServerSideProps({ query }) {
+  return ({
+    props: { query }
+  })
+}
 export default ProductDetailPage;
 // export default withTranslation('common')(ProductDetailPage);

@@ -94,7 +94,8 @@ const Nav: FC<Props> = ({ t }) => {
     if (title === "tertiary") {
       console.log(item)
       Router.push({
-        pathname: "/ProductDetailPage"
+        pathname: "/ProductDetailPage",
+        query: item.detail[0]?._id
       })
       localStorage.setItem("product", JSON.stringify(
         {

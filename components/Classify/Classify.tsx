@@ -14,6 +14,16 @@ type Props = {
   data?: any;
 } & WithTranslation;
 const Classify: FC<Props> = ({ t, title, data }) => {
+
+
+  const [currentLanguage, setCurrentLanguage] = useState<null | string>('cn'); //语言
+
+  //切换语言
+  useEffect(() => {
+    const localLanguage = localStorage.getItem("language")
+    setCurrentLanguage(localLanguage)
+})
+
   const goDetail = (params) => {
     // console.log(params)
     if (params.title) {
@@ -51,7 +61,7 @@ const Classify: FC<Props> = ({ t, title, data }) => {
   return (
     <section className={styles.product}>
       {title ? <h2>{t(`${title}`)}</h2> : null}
-      <Row justify="space-between">
+      <Row>
         {data.map((item, index) => {
           return (
             <Col flex="285px" className={styles.single_product} key={index}>
@@ -59,13 +69,13 @@ const Classify: FC<Props> = ({ t, title, data }) => {
                 goDetail(item)
               }}>
                 <img src={item.productPictureUrl || item.detail.productPictureUrl || item.pictureUrl} alt={t('产品图片')} />
-                <p>{item.title || item.detail.title}</p>
+                <p>{(currentLanguage == "cn" ? item.title : item.titleEn) || (currentLanguage == "cn" ? item.detail.title : item.detail.titleEn)}</p>
               </div>
             </Col>
           );
         })}
       </Row>
-    </section>
+    </section >
   );
 };
 
