@@ -29,14 +29,8 @@ const Nav: FC<Props> = ({ t }) => {
   // const [firstIndex, setFirstIndex] = useState<null | number>(0); //当前一级类目下标
   //数据获取
   useEffect(() => {
-    // if (allCategories.length !== 0) {
-
-    //   // RetrieveProduct()
-    // } else {
-    //   // getRetrieveCategory()
-    // }
     getFindAll()
-  },[])
+  }, [])
 
   useEffect(() => {
     // 当前选中的导航单元
@@ -98,11 +92,18 @@ const Nav: FC<Props> = ({ t }) => {
     const { _id: second_id } = item
     console.log(nowadayFirst)
     if (title === "tertiary") {
-
+      console.log(item)
       Router.push({
         pathname: "/ProductDetailPage",
-        query: { firstId, second_id, index },
+        query: item.detail[0]?._id
       })
+      localStorage.setItem("product", JSON.stringify(
+        {
+          ...item.detail[0],
+          setitle: item.title,
+          setitleEn: item.titleEn,
+          secondaryId: item._id
+        }))
     } else if (title === "second") {
       const secondTitle = []
       for (let { title, titleEn, _id } of nowadayFirst) {
@@ -130,7 +131,7 @@ const Nav: FC<Props> = ({ t }) => {
                     setHoveBack(index);
                     setNowadayFirst(item.primary.secondary)
                     setFirstId(item._id)
-                    console.log(item)
+                    // console.log(item)
                     setFirstTitle(item.primary.title)
                     setFirstTitleEn(item.primary.titleEn)
                   }}

@@ -25,11 +25,12 @@ const ProductCenter = ({ t }) => {
             setPresentSecond(secondIndex)
             const secondTitle = localStorage.getItem("secondTitle")
             secondTitle && setSecondTitleAry(JSON.parse(secondTitle))
+            console.log(JSON.parse(secondTitle))
         } else {
             console.log("获取所有一二级数据")
             getRetrieveCategory()
         }
-    }, [])
+    }, [router.query])
     //切换语言
     useEffect(() => {
         const localLanguage = localStorage.getItem("language")
@@ -89,6 +90,8 @@ const ProductCenter = ({ t }) => {
                 <Row className={styles.second_title_list}>
                     {secondTitleAry ?
                         secondTitleAry.map((item, index) => {
+                            console.log(secondTitleAry)
+                            console.log(item)
                             return (
 
                                 <Col key={index} span={2}

@@ -6,10 +6,13 @@
     margin-bottom: 20px;
   }
   .single_product {
+     width: 24%; 
     height: 387px;
+    margin-top: 15px;
     text-align: center;
     border: 1px solid #333;
     transition: all 0.5s;
+    margin
     p {
       margin-top: 40px;
     }
@@ -20,6 +23,9 @@
       object-position: center;
     }
   }
+  .single_product:not(:nth-child(4n)) {
+    margin-right: calc(4% / 3);
+}
   .single_product:hover {
     border: 1px solid #FFC31F;
     color: #FFC31F;

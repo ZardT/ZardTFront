@@ -38,21 +38,19 @@ const Homepage = ({ t }) => {
     // if (allCategories.length !== 0) {
 
     // } else {
-      getFindAll()
+    getFindAll()
     // }
-  },[])
+  }, [])
   useEffect(() => {
     getRecommend()
   }, [])
   //获取所有类目列表
   const getFindAll = async () => {
     await axios.get("/product/find-all").then(({ data }) => {
-
+      // console.log(data)
       setAllCategories(data)
     })
-    // for (let { primary, _id } of data) {
-    // }
-    // setTertiary(data.list)
+
   }
   const getRecommend = async () => {
     await axios.get("/product/find-all-recommend").then(({ data }) => {

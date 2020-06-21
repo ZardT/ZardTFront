@@ -1,5 +1,6 @@
 //公用按钮 了解更多
 import { FC, useEffect, useState, ReactNode, useCallback } from "react";
+import Link from 'next/link';
 import { WithTranslation } from "next-i18next";
 import NextI18NextInstance from "../../i18n.js";
 
@@ -22,7 +23,14 @@ const LearnMore: FC<Props> = ({ t }) => {
       ScrollReveal().reveal(`.${styles.learn_more}`);
     });
   }, []);
-  return <div className={styles.learn_more}>{t("了解更多")}</div>;
+  return (
+
+    <Link href={{ pathname: '/ProductCenter' }}>
+      <a>
+        <div className={styles.learn_more}>{t("了解更多")}</div>
+      </a>
+    </Link>
+  )
 };
 
 export async function getStaticProps() {

@@ -14,12 +14,36 @@ type Props = {
   data?: any;
 } & WithTranslation;
 const Classify: FC<Props> = ({ t, title, data }) => {
-  const goDetail = (params) => (e) => {
-    console.log(params);
-    Router.push({
-      pathname: `/ProductDetailPage`,
-      query: params
-    });
+
+
+  const [currentLanguage, setCurrentLanguage] = useState<null | string>('cn'); //语言
+
+  //切换语言
+  useEffect(() => {
+    const localLanguage = localStorage.getItem("language")
+    setCurrentLanguage(localLanguage)
+})
+
+  const goDetail = (params) => {
+    // console.log(params)
+    if (params.title) {
+
+      Router.push({
+        pathname: `/ProductCenter`
+      });
+    } else {
+
+      Router.push({
+        pathname: `/ProductDetailPage`
+      });
+      localStorage.setItem("product", JSON.stringify(
+        {
+          ...params.detail,
+          setitle: params.title,
+          setitleEn: params.titleEn,
+          secondaryId: params._id
+        }))
+    }
   };
 
   useEffect(() => {
@@ -37,28 +61,29 @@ const Classify: FC<Props> = ({ t, title, data }) => {
   return (
     <section className={styles.product}>
       {title ? <h2>{t(`${title}`)}</h2> : null}
-      <Row justify="space-between">
+      <Row>
         {data.map((item, index) => {
           return (
             <Col flex="285px" className={styles.single_product} key={index}>
-              <div onClick={goDetail(item)}>
+              <div onClick={() => {
+                goDetail(item)
+              }}>
                 <img src={item.productPictureUrl || item.detail.productPictureUrl || item.pictureUrl} alt={t('产品图片')} />
-                <p>{item.title || item.detail.title}</p>
+                <p>{(currentLanguage == "cn" ? item.title : item.titleEn) || (currentLanguage == "cn" ? item.detail.title : item.detail.titleEn)}</p>
               </div>
             </Col>
           );
         })}
       </Row>
-      {/* {title && title !== '精选产品' && title !== 'Select the product' && (
-        <MoreBtn></MoreBtn>
-      )} */}
-    </section>
+    </section >
   );
 };
 
 export async function getStaticProps() {
+
   return {
     props: { namespacesRequired: ['common'] }, // will be passed to the page component as props
   };
 }
+
 export default withTranslation('common')(Classify);

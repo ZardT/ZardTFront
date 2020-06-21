@@ -23,7 +23,7 @@ const BreadcrumbNav: FC<Props> = ({ t, second, tertius }) => {
         <Row className={styles.breadcrumb_nav}>
             <Col span={24}>
                 <Breadcrumb separator=">">
-                    <Breadcrumb.Item href="/ProductCenter">产品中心</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/ProductCenter">{t("产品中心")}</Breadcrumb.Item>
                     {second.link ? <Breadcrumb.Item href={second.link}>{second.title}</Breadcrumb.Item> :
                         <Breadcrumb.Item>{second.title}</Breadcrumb.Item>}
                     {tertius ? <Breadcrumb.Item href={tertius.link}>{tertius.title}</Breadcrumb.Item> : null}
